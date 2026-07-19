@@ -1,0 +1,1217 @@
+<title>Alkami Activate - Marketing Studio (concept)</title>
+<style>
+  :root {
+    --font-sans: -apple-system, "SF Pro Display", "Segoe UI", system-ui, Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, "Cascadia Code", monospace;
+
+    /* neutrals biased cool/navy toward the teal brand */
+    --bg:            #EDF3F4;
+    --surface:       #FFFFFF;
+    --surface-2:     #F4F8F9;
+    --ink:           #12242F;
+    --ink-2:         #47585F;
+    --muted:         #7A8B92;
+    --border:        #E1E9EB;
+    --border-strong: #CEDADD;
+
+    --accent:        #0A8D9A;
+    --accent-press:  #077885;
+    --accent-ink:    #0A6C77;
+    --accent-soft:   #E0F1F2;
+    --brand2:        #E0631B;
+
+    --good:          #1a7d2b;
+    --good-mark:     #0ca30c;
+    --warn:          #b9791a;
+    --warn-mark:     #fab219;
+    --crit:          #C11826;
+
+    /* chart roles */
+    --c-surface:   #FFFFFF;
+    --c-grid:      #E6EDEF;
+    --c-axis:      #C3CFD2;
+    --c-accent:    #0A8D9A;
+    --s1:          #eb6834; /* orange  */
+    --s2:          #2a78d6; /* blue    */
+    --s3:          #1baf7a; /* aqua    */
+    --s4:          #4a3aa7; /* violet  */
+
+    --shadow-sm: 0 1px 2px rgba(18,36,47,.06), 0 1px 3px rgba(18,36,47,.05);
+    --shadow-md: 0 4px 14px rgba(18,36,47,.09), 0 2px 6px rgba(18,36,47,.06);
+    --shadow-lg: 0 18px 48px rgba(18,36,47,.18);
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:            #0C1519;
+      --surface:       #13212A;
+      --surface-2:     #1B2B34;
+      --ink:           #EAF1F2;
+      --ink-2:         #A6B4BB;
+      --muted:         #78888F;
+      --border:        #253640;
+      --border-strong: #33474F;
+
+      --accent:        #18B4C0;
+      --accent-press:  #33C6D0;
+      --accent-ink:    #45C8D1;
+      --accent-soft:   #0F2E33;
+      --brand2:        #F0752B;
+
+      --good:          #0ca30c;
+      --good-mark:     #0ca30c;
+      --warn:          #fab219;
+      --warn-mark:     #fab219;
+      --crit:          #e66767;
+
+      --c-surface:   #13212A;
+      --c-grid:      #253640;
+      --c-axis:      #33474F;
+      --c-accent:    #18B4C0;
+      --s1:          #d95926;
+      --s2:          #3987e5;
+      --s3:          #199e70;
+      --s4:          #9085e9;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg:#EDF3F4; --surface:#FFFFFF; --surface-2:#F4F8F9; --ink:#12242F; --ink-2:#47585F;
+    --muted:#7A8B92; --border:#E1E9EB; --border-strong:#CEDADD;
+    --accent:#0A8D9A; --accent-press:#077885; --accent-ink:#0A6C77; --accent-soft:#E0F1F2; --brand2:#E0631B;
+    --good:#1a7d2b; --good-mark:#0ca30c; --warn:#b9791a; --warn-mark:#fab219; --crit:#C11826;
+    --c-surface:#FFFFFF; --c-grid:#E6EDEF; --c-axis:#C3CFD2; --c-accent:#0A8D9A;
+    --s1:#eb6834; --s2:#2a78d6; --s3:#1baf7a; --s4:#4a3aa7;
+  }
+  :root[data-theme="dark"] {
+    --bg:#0C1519; --surface:#13212A; --surface-2:#1B2B34; --ink:#EAF1F2; --ink-2:#A6B4BB;
+    --muted:#78888F; --border:#253640; --border-strong:#33474F;
+    --accent:#18B4C0; --accent-press:#33C6D0; --accent-ink:#45C8D1; --accent-soft:#0F2E33; --brand2:#F0752B;
+    --good:#0ca30c; --good-mark:#0ca30c; --warn:#fab219; --warn-mark:#fab219; --crit:#e66767;
+    --c-surface:#13212A; --c-grid:#253640; --c-axis:#33474F; --c-accent:#18B4C0;
+    --s1:#d95926; --s2:#3987e5; --s3:#199e70; --s4:#9085e9;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  .app {
+    display: grid;
+    grid-template-columns: 244px 1fr;
+    min-height: 100vh;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .side {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 20px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+  .brand {
+    display:flex; align-items:center; gap:11px;
+    padding: 6px 8px 18px;
+  }
+  .brand-mark {
+    width: 34px; height: 34px; border-radius: 10px;
+    background: linear-gradient(145deg, var(--accent), #17B9AE);
+    display:grid; place-items:center; flex:none;
+    box-shadow: 0 4px 12px rgba(10,141,154,.32);
+  }
+  .brand-mark svg { width:19px; height:19px; }
+  .brand-name { font-weight: 750; font-size: 17px; letter-spacing:-.02em; }
+  .brand-name span { color: var(--accent-ink); font-weight: 650; }
+  .nav-label {
+    font-size: 10.5px; text-transform: uppercase; letter-spacing:.11em;
+    color: var(--muted); font-weight: 700; padding: 14px 10px 6px;
+  }
+  .nav-item {
+    display:flex; align-items:center; gap:11px;
+    padding: 9px 11px; border-radius: 10px;
+    color: var(--ink-2); font-size: 14px; font-weight: 550;
+    cursor:pointer; border:none; background:none; width:100%; text-align:left;
+    font-family: inherit;
+  }
+  .nav-item svg { width:17px; height:17px; flex:none; opacity:.85; }
+  .nav-item:hover { background: var(--surface-2); color: var(--ink); }
+  .nav-item.active { background: var(--accent-soft); color: var(--accent-ink); font-weight: 650; }
+  .nav-item.active svg { opacity:1; }
+  .side-foot {
+    margin-top: auto; padding: 12px 10px 2px; border-top: 1px solid var(--border);
+    display:flex; align-items:center; gap:10px;
+  }
+  .avatar {
+    width:32px; height:32px; border-radius:50%; flex:none;
+    background: linear-gradient(140deg,#4a3aa7,#7d6bd6); color:#fff;
+    display:grid; place-items:center; font-size:12.5px; font-weight:700;
+  }
+  .side-foot .who { font-size:12.5px; line-height:1.25; }
+  .side-foot .who b { font-weight:650; }
+  .side-foot .who span { color: var(--muted); }
+
+  /* ---------- Topbar ---------- */
+  .main { display:flex; flex-direction:column; min-width:0; }
+  .topbar {
+    height: 62px; border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--surface) 82%, transparent);
+    backdrop-filter: blur(8px);
+    display:flex; align-items:center; gap:14px; padding: 0 26px;
+    position: sticky; top:0; z-index: 20;
+  }
+  .fi-switch {
+    display:flex; align-items:center; gap:10px; padding:6px 12px 6px 8px;
+    border:1px solid var(--border-strong); border-radius: 10px; background: var(--surface);
+    cursor:pointer; font-family:inherit; color:var(--ink); font-size:13.5px;
+  }
+  .fi-logo {
+    width:26px;height:26px;border-radius:7px;flex:none;
+    background: linear-gradient(145deg,#1baf7a,#2f8f6d); color:#fff;
+    display:grid;place-items:center;font-weight:750;font-size:12px;
+  }
+  .fi-switch b { font-weight:650; }
+  .fi-switch .chev { color: var(--muted); margin-left:2px; }
+  .search {
+    flex:1; max-width: 340px; display:flex; align-items:center; gap:8px;
+    background: var(--surface-2); border:1px solid var(--border); border-radius:10px;
+    padding: 8px 12px; color: var(--muted); font-size:13px;
+  }
+  .search svg{width:15px;height:15px;}
+  .top-spacer{flex:1;}
+  .theme-toggle{
+    width:36px;height:36px;border-radius:9px;border:1px solid var(--border-strong);
+    background:var(--surface);display:grid;place-items:center;cursor:pointer;color:var(--ink-2);
+  }
+  .theme-toggle svg{width:17px;height:17px;}
+
+  .btn {
+    font-family:inherit; font-size:13.5px; font-weight:600; cursor:pointer;
+    border-radius:10px; padding:9px 15px; border:1px solid transparent;
+    display:inline-flex; align-items:center; gap:8px; white-space:nowrap;
+  }
+  .btn svg{width:15px;height:15px;}
+  .btn-primary { background: var(--accent); color:#fff; box-shadow: 0 2px 8px rgba(10,141,154,.3); }
+  .btn-primary:hover { background: var(--accent-press); }
+  .btn-ghost { background: var(--surface); color: var(--ink); border-color: var(--border-strong); }
+  .btn-ghost:hover { background: var(--surface-2); }
+  .btn-soft { background: var(--accent-soft); color: var(--accent-ink); }
+  .btn-soft:hover { filter: brightness(.97); }
+
+  /* ---------- Content ---------- */
+  .content { padding: 26px 32px 60px; max-width: 1180px; width:100%; }
+  .view { display:none; animation: viewIn .32s ease; }
+  .view.active { display:block; }
+  @keyframes viewIn { from{opacity:0; transform: translateY(6px);} to{opacity:1; transform:none;} }
+
+  .page-head { margin-bottom: 22px; }
+  .eyebrow { font-size:11px; text-transform:uppercase; letter-spacing:.12em; font-weight:700; color: var(--accent-ink); }
+  .page-head h1 { font-size: 26px; letter-spacing:-.025em; margin: 6px 0 4px; font-weight: 760; text-wrap:balance; }
+  .page-head p { margin:0; color: var(--ink-2); font-size: 14.5px; max-width: 62ch; }
+
+  .card {
+    background: var(--surface); border:1px solid var(--border); border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+  }
+  .card-pad { padding: 18px 20px; }
+  .card-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding: 16px 20px; border-bottom:1px solid var(--border); }
+  .card-head h3 { margin:0; font-size:15px; font-weight:680; letter-spacing:-.01em; }
+  .card-head .sub { color: var(--muted); font-size:12.5px; }
+
+  .grid { display:grid; gap:16px; }
+  .g-4 { grid-template-columns: repeat(4, 1fr); }
+  .g-3 { grid-template-columns: repeat(3, 1fr); }
+  .g-2 { grid-template-columns: repeat(2, 1fr); }
+  .g-2-3 { grid-template-columns: 1.35fr 1fr; }
+  .g-3-2 { grid-template-columns: 1.6fr 1fr; }
+
+  /* KPI tiles */
+  .tile { padding: 16px 17px; }
+  .tile .k-label { font-size:12.5px; color: var(--ink-2); font-weight:550; display:flex; align-items:center; gap:7px; }
+  .k-dot{width:8px;height:8px;border-radius:50%;flex:none;}
+  .tile .k-val { font-size: 27px; font-weight: 760; letter-spacing:-.02em; margin-top:8px; }
+  .tile .k-foot { display:flex; align-items:center; justify-content:space-between; margin-top:4px; }
+  .delta { font-size:12.5px; font-weight:650; display:inline-flex; align-items:center; gap:3px; }
+  .delta.up { color: var(--good); }
+  .delta.down { color: var(--crit); }
+  .spark { width: 78px; height: 30px; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* pills / chips */
+  .pill { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; padding:3px 9px; border-radius:999px; }
+  .pill::before { content:""; width:6px;height:6px;border-radius:50%; background: currentColor; opacity:.9; }
+  .pill.live   { color: var(--good); background: color-mix(in srgb, var(--good-mark) 13%, transparent); }
+  .pill.sched  { color: var(--warn); background: color-mix(in srgb, var(--warn-mark) 15%, transparent); }
+  .pill.draft  { color: var(--muted); background: color-mix(in srgb, var(--muted) 15%, transparent); }
+  .pill.done   { color: var(--s2); background: color-mix(in srgb, var(--s2) 14%, transparent); }
+  .chip {
+    display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:550;
+    padding:5px 10px; border-radius:8px; background: var(--surface-2);
+    border:1px solid var(--border); color: var(--ink); font-family: var(--font-mono);
+  }
+  .chip .x{color:var(--muted); font-family:var(--font-sans);}
+  .chip.add { border-style:dashed; color: var(--accent-ink); cursor:pointer; }
+
+  table { width:100%; border-collapse: collapse; font-size:13.5px; }
+  th { text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color: var(--muted); font-weight:700; padding: 10px 14px; border-bottom:1px solid var(--border); }
+  td { padding: 12px 14px; border-bottom:1px solid var(--border); }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--surface-2); }
+  .t-name { font-weight:600; }
+  .t-sub { color: var(--muted); font-size:12px; }
+
+  /* AI recommendation cards */
+  .rec {
+    border:1px solid var(--border); border-radius: 12px; padding:15px 16px; background: var(--surface);
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .rec .sig { font-size:11.5px; font-weight:650; color: var(--accent-ink); text-transform:uppercase; letter-spacing:.05em; display:flex; align-items:center; gap:6px; }
+  .rec h4 { margin:0; font-size:15px; font-weight:650; letter-spacing:-.01em; }
+  .rec p { margin:0; font-size:13px; color: var(--ink-2); }
+  .rec .rec-meta { display:flex; gap:14px; font-size:12px; color: var(--muted); margin-top:2px; }
+  .rec .rec-meta b { color: var(--ink); font-weight:650; }
+
+  .ai-badge {
+    display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:650;
+    color: var(--accent-ink); background: var(--accent-soft); padding:4px 10px; border-radius:999px;
+  }
+  .ai-badge svg{width:13px;height:13px;}
+
+  /* Copilot */
+  .copilot { background: linear-gradient(160deg, var(--surface), var(--surface-2)); }
+  .obj-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:10px; margin: 14px 0 16px; }
+  .obj {
+    text-align:left; font-family:inherit; cursor:pointer; padding:13px 14px; border-radius:12px;
+    border:1px solid var(--border-strong); background: var(--surface); color:var(--ink);
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .obj:hover { border-color: var(--accent); }
+  .obj.sel { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); }
+  .obj .oi { width:30px;height:30px;border-radius:9px; display:grid;place-items:center; background: var(--accent-soft); color: var(--accent-ink); }
+  .obj .oi svg{width:16px;height:16px;}
+  .obj b{font-size:13.5px; font-weight:650;}
+  .obj span{font-size:11.5px; color:var(--muted);}
+  .prompt-row { display:flex; gap:10px; align-items:stretch; }
+  .prompt-row input {
+    flex:1; font-family:inherit; font-size:14px; padding: 12px 14px; border-radius:11px;
+    border:1px solid var(--border-strong); background: var(--surface); color: var(--ink);
+  }
+  .prompt-row input:focus { outline:2px solid var(--accent); outline-offset:1px; border-color:transparent; }
+
+  .plan { margin-top: 8px; display:flex; flex-direction:column; gap:16px; }
+  .plan.hidden { display:none; }
+  .reveal { opacity:0; transform: translateY(10px); animation: rise .5s ease forwards; }
+  @keyframes rise { to { opacity:1; transform:none; } }
+  .plan-block { border:1px solid var(--border); border-radius:12px; background: var(--surface); overflow:hidden; }
+  .plan-block .pb-head { display:flex; align-items:center; gap:9px; padding: 13px 16px; border-bottom:1px solid var(--border); font-weight:650; font-size:13.5px; }
+  .pb-head .step { width:22px;height:22px;border-radius:50%; background: var(--accent-soft); color: var(--accent-ink); display:grid;place-items:center; font-size:12px; font-weight:750; flex:none; }
+  .pb-body { padding: 15px 16px; }
+
+  .msg { border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+  .msg + .msg { margin-top:10px; }
+  .msg-top { display:flex; align-items:center; gap:9px; padding:9px 13px; background: var(--surface-2); font-size:12.5px; font-weight:600; }
+  .msg-top .ch { width:22px;height:22px;border-radius:6px; display:grid;place-items:center; color:#fff; flex:none; }
+  .msg-top .ch svg{width:12px;height:12px;}
+  .msg-body { padding: 12px 14px; font-size:13.5px; }
+  .msg-body .subj { font-weight:650; margin-bottom:4px; }
+  .msg-body .bd { color: var(--ink-2); }
+  .msg-body .edit { font-size:12px; color: var(--accent-ink); font-weight:600; margin-top:8px; cursor:pointer; display:inline-flex; gap:5px; align-items:center; }
+
+  .outcome-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items:center; }
+  .proj { display:flex; flex-direction:column; gap:12px; }
+  .proj-row { display:flex; align-items:baseline; justify-content:space-between; padding-bottom:12px; border-bottom:1px dashed var(--border); }
+  .proj-row:last-child{border-bottom:none;padding-bottom:0;}
+  .proj-row .pl { font-size:13px; color: var(--ink-2); }
+  .proj-row .pv { font-size:22px; font-weight:750; letter-spacing:-.02em; }
+  .proj-row .pv small { font-size:12px; color: var(--good); font-weight:650; margin-left:6px; }
+
+  /* Journey canvas */
+  .journey { display:flex; align-items:stretch; gap:0; overflow-x:auto; padding: 6px 2px 14px; }
+  .jnode {
+    min-width: 172px; flex:none; border:1px solid var(--border); border-radius:12px; background: var(--surface);
+    padding: 13px 14px; display:flex; flex-direction:column; gap:7px; box-shadow: var(--shadow-sm);
+  }
+  .jnode .jt { font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700; display:flex; align-items:center; gap:6px; }
+  .jnode .jt .ci{width:20px;height:20px;border-radius:6px;display:grid;place-items:center;color:#fff;}
+  .jnode .jt .ci svg{width:12px;height:12px;}
+  .jnode b { font-size:13.5px; font-weight:600; }
+  .jnode span { font-size:12px; color: var(--ink-2); }
+  .jconn { flex:none; align-self:center; width:34px; height:2px; background: var(--border-strong); position:relative; }
+  .jconn::after { content:""; position:absolute; right:-1px; top:-3px; border:4px solid transparent; border-left-color: var(--border-strong); }
+  .jnode.branch { border-color: var(--accent); background: var(--accent-soft); }
+
+  /* Audiences */
+  .tag-cloud { display:flex; flex-wrap:wrap; gap:8px; }
+  .tagx { font-size:12.5px; padding:6px 11px; border-radius:8px; background: var(--surface-2); border:1px solid var(--border); color: var(--ink-2); cursor:default; }
+  .tagx b{color:var(--ink); font-weight:600;}
+  .legend { display:flex; flex-direction:column; gap:9px; }
+  .legend .lr { display:flex; align-items:center; gap:10px; font-size:13px; }
+  .legend .sw { width:11px;height:11px;border-radius:3px; flex:none; }
+  .legend .lv { margin-left:auto; font-weight:650; font-variant-numeric:tabular-nums; }
+
+  /* charts */
+  .chart-wrap { position:relative; }
+  .tooltip {
+    position:absolute; pointer-events:none; z-index:5; opacity:0; transform: translate(-50%,-110%);
+    background: var(--ink); color: var(--surface); font-size:12px; padding:7px 10px; border-radius:8px;
+    box-shadow: var(--shadow-md); white-space:nowrap; transition: opacity .1s; line-height:1.35;
+  }
+  .tooltip b{ font-weight:700; }
+  :root[data-theme="dark"] .tooltip, :root:not([data-theme="light"]) .tooltip { }
+  .axis-lbl { font-size:11px; fill: var(--muted); font-family: var(--font-sans); }
+
+  /* PRD */
+  .prd { max-width: 800px; }
+  .prd-doc { background: var(--surface); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: 40px 46px; }
+  .prd-doc h2 { font-size:20px; letter-spacing:-.02em; margin: 30px 0 10px; font-weight:730; }
+  .prd-doc h2:first-child{margin-top:0;}
+  .prd-doc h3 { font-size:14px; margin: 18px 0 6px; font-weight:680; }
+  .prd-doc p, .prd-doc li { font-size:14px; color: var(--ink-2); line-height:1.62; }
+  .prd-doc ul { margin: 6px 0 6px; padding-left: 20px; }
+  .prd-doc li { margin: 4px 0; }
+  .prd-doc li b, .prd-doc p b { color: var(--ink); font-weight:650; }
+  .prd-meta { display:flex; flex-wrap:wrap; gap: 8px 22px; padding: 14px 0 18px; border-bottom:1px solid var(--border); margin-bottom: 8px; font-size:12.5px; color: var(--muted); }
+  .prd-meta b{ color: var(--ink); font-weight:600; }
+  .req { border:1px solid var(--border); border-radius:10px; overflow:hidden; margin: 10px 0; }
+  .req-r { display:grid; grid-template-columns: 58px 1fr; gap: 0; border-bottom:1px solid var(--border); }
+  .req-r:last-child{border-bottom:none;}
+  .req-r .pr { padding:11px 12px; font-size:11px; font-weight:750; letter-spacing:.04em; display:flex; align-items:flex-start; justify-content:center; }
+  .req-r .pr.p0 { color:#fff; background: var(--accent); }
+  .req-r .pr.p1 { color: var(--accent-ink); background: var(--accent-soft); }
+  .req-r .rd { padding:11px 14px; font-size:13.5px; color: var(--ink-2); border-left:1px solid var(--border); }
+  .req-r .rd b{ color: var(--ink); }
+  .callout { background: var(--accent-soft); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius:10px; padding: 12px 15px; font-size:13px; color: var(--accent-ink); margin: 14px 0; }
+  .callout b{color:var(--accent-ink);}
+
+  .disclaimer { font-size:11.5px; color: var(--muted); text-align:center; padding: 24px 0 8px; }
+
+  @media (max-width: 1080px){ .g-4{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width: 900px){
+    .app{grid-template-columns:1fr;} .side{display:none;}
+    .g-3,.g-2,.g-2-3,.g-3-2{grid-template-columns:1fr;} .outcome-grid{grid-template-columns:1fr;}
+    .content{padding:20px 18px 50px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .view, .reveal { animation: none !important; opacity:1 !important; transform:none !important; }
+  }
+</style>
+
+<div class="app">
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="side">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4.5l2.5-7 4.5 14 2.5-7H22"/></svg>
+      </div>
+      <div class="brand-name">Alkami<span>&nbsp;Activate</span></div>
+    </div>
+
+    <div class="nav-label">Grow</div>
+    <button class="nav-item active" data-view="overview">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+      Overview
+    </button>
+    <button class="nav-item" data-view="copilot">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M5 12H2M22 12h-3M6 6l-2-2M20 20l-2-2M6 18l-2 2M20 4l-2 2"/><circle cx="12" cy="12" r="3.4"/></svg>
+      Plan a campaign
+    </button>
+    <button class="nav-item" data-view="audiences">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><circle cx="17.5" cy="8.5" r="2.6"/><path d="M16 14.2a4.8 4.8 0 0 1 5 4.8"/></svg>
+      Audiences
+    </button>
+    <button class="nav-item" data-view="journeys">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2.3"/><circle cx="19" cy="6" r="2.3"/><circle cx="12" cy="18" r="2.3"/><path d="M5 8.3v3.2a2 2 0 0 0 2 2h3M19 8.3v3.2a2 2 0 0 1-2 2h-3"/></svg>
+      Journeys
+    </button>
+
+    <div class="nav-label">Measure</div>
+    <button class="nav-item" data-view="analytics">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4"/><path d="M4 20h16"/><path d="M8 16v-4M13 16V8M18 16v-6"/></svg>
+      Performance
+    </button>
+
+    <div class="nav-label">About this build</div>
+    <button class="nav-item" data-view="prd">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5M8.5 13h7M8.5 17h5"/></svg>
+      Product spec (PRD)
+    </button>
+
+    <div class="side-foot">
+      <div class="avatar">DD</div>
+      <div class="who"><b>Devin Depoint</b><br><span>Product · Marketing</span></div>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <div class="main">
+    <div class="topbar">
+      <button class="fi-switch">
+        <span class="fi-logo">ESL</span>
+        <span><b>ESL Federal Credit Union</b></span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+        Search campaigns, audiences, tags…
+      </div>
+      <div class="top-spacer"></div>
+      <button class="theme-toggle" id="themeBtn" title="Toggle theme" aria-label="Toggle color theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+      </button>
+      <button class="btn btn-primary" data-view="copilot" id="topPlan">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        Plan a campaign
+      </button>
+    </div>
+
+    <div class="content">
+
+      <!-- ============ OVERVIEW ============ -->
+      <section class="view active" id="view-overview">
+        <div class="page-head">
+          <div class="eyebrow">Monday · July 15</div>
+          <h1>Good morning, Devin</h1>
+          <p>Here's how marketing is moving the numbers at ESL this quarter - and three openings the model surfaced overnight.</p>
+        </div>
+
+        <div class="grid g-4" style="margin-bottom:16px;">
+          <div class="card tile">
+            <div class="k-label"><span class="k-dot" style="background:var(--s1)"></span>Deposits influenced</div>
+            <div class="k-val num">$14.2M</div>
+            <div class="k-foot"><span class="delta up">▲ 22.4% QoQ</span><svg class="spark" data-spark="deposits"></svg></div>
+          </div>
+          <div class="card tile">
+            <div class="k-label"><span class="k-dot" style="background:var(--s2)"></span>New loans opened</div>
+            <div class="k-val num">1,284</div>
+            <div class="k-foot"><span class="delta up">▲ 11.9% QoQ</span><svg class="spark" data-spark="loans"></svg></div>
+          </div>
+          <div class="card tile">
+            <div class="k-label"><span class="k-dot" style="background:var(--s3)"></span>Blended ROAS</div>
+            <div class="k-val num">13.4×</div>
+            <div class="k-foot"><span class="delta up">▲ 1.8× QoQ</span><svg class="spark" data-spark="roas"></svg></div>
+          </div>
+          <div class="card tile">
+            <div class="k-label"><span class="k-dot" style="background:var(--s4)"></span>Engaged members</div>
+            <div class="k-val num">61.3%</div>
+            <div class="k-foot"><span class="delta up">▲ 3.1 pts</span><svg class="spark" data-spark="engaged"></svg></div>
+          </div>
+        </div>
+
+        <div class="grid g-3-2" style="margin-bottom:16px;">
+          <div class="card">
+            <div class="card-head">
+              <div><h3>Revenue influenced by marketing</h3><div class="sub">Attributed deposits + loan revenue · last 12 months</div></div>
+              <span class="ai-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>Forecast +8%</span>
+            </div>
+            <div class="card-pad chart-wrap">
+              <svg id="trendChart" width="100%" height="230" role="img" aria-label="Monthly revenue influenced trending upward from $0.6M to $2.4M"></svg>
+              <div class="tooltip" id="trendTip"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>Channel mix</h3><div class="sub">Attributed revenue</div></div>
+            <div class="card-pad">
+              <svg id="chanBars" width="100%" height="160"></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-head">
+            <div><h3>Opportunities the model found</h3><div class="sub">Ranked by projected 90-day revenue · refreshed 06:00</div></div>
+            <span class="ai-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>AI-ranked</span>
+          </div>
+          <div class="card-pad">
+            <div class="grid g-3">
+              <div class="rec">
+                <div class="sig"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>Signal · balance migration</div>
+                <h4>2,140 members drifting to rival savings</h4>
+                <p>Recurring outbound transfers to high-yield fintechs, 3+ months. High attrition risk on core deposits.</p>
+                <div class="rec-meta"><span>Projected <b>+$3.9M</b></span><span>Confidence <b>High</b></span></div>
+                <button class="btn btn-soft" data-view="copilot" style="align-self:flex-start;">Launch retention play →</button>
+              </div>
+              <div class="rec">
+                <div class="sig"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>Signal · life event</div>
+                <h4>870 members likely to need a HELOC</h4>
+                <p>Rising home values in-market + high card utilization + tenure. Strong fit for home-equity offer.</p>
+                <div class="rec-meta"><span>Projected <b>+$2.4M</b></span><span>Confidence <b>Med-High</b></span></div>
+                <button class="btn btn-soft" data-view="copilot" style="align-self:flex-start;">Build lending play →</button>
+              </div>
+              <div class="rec">
+                <div class="sig"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>Signal · onboarding gap</div>
+                <h4>1,530 new members, no 2nd product</h4>
+                <p>Opened checking &lt;60 days ago, direct deposit not yet set. Prime window for primacy.</p>
+                <div class="rec-meta"><span>Projected <b>+$1.1M</b></span><span>Confidence <b>High</b></span></div>
+                <button class="btn btn-soft" data-view="copilot" style="align-self:flex-start;">Build onboarding play →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div><h3>Active &amp; recent campaigns</h3></div><button class="btn btn-ghost" data-view="analytics">View performance</button></div>
+          <div style="overflow-x:auto;">
+          <table>
+            <thead><tr><th>Campaign</th><th>Objective</th><th>Audience</th><th>Channels</th><th>Status</th><th style="text-align:right;">Attributed</th><th style="text-align:right;">ROAS</th></tr></thead>
+            <tbody>
+              <tr><td><div class="t-name">Summer Savings Boost</div><div class="t-sub">Started Jun 24</div></td><td>Grow deposits</td><td class="num">18,400</td><td>Email · In-app · SMS</td><td><span class="pill live">Live</span></td><td style="text-align:right;" class="num">$4.6M</td><td style="text-align:right;" class="num">16.2×</td></tr>
+              <tr><td><div class="t-name">HELOC - Rising Equity</div><div class="t-sub">Starts Jul 18</div></td><td>Drive lending</td><td class="num">870</td><td>Email · Digital ads</td><td><span class="pill sched">Scheduled</span></td><td style="text-align:right;" class="num">-</td><td style="text-align:right;" class="num">-</td></tr>
+              <tr><td><div class="t-name">New Member Primacy</div><div class="t-sub">Started May 2</div></td><td>Deepen engagement</td><td class="num">1,530</td><td>In-app · Email</td><td><span class="pill live">Live</span></td><td style="text-align:right;" class="num">$820K</td><td style="text-align:right;" class="num">9.7×</td></tr>
+              <tr><td><div class="t-name">Auto-Loan Refi Winback</div><div class="t-sub">Ended Jun 10</div></td><td>Drive lending</td><td class="num">6,220</td><td>Email · SMS · Ads</td><td><span class="pill done">Completed</span></td><td style="text-align:right;" class="num">$2.1M</td><td style="text-align:right;" class="num">12.8×</td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ COPILOT (HERO) ============ -->
+      <section class="view" id="view-copilot">
+        <div class="page-head">
+          <div class="eyebrow">AI Campaign Copilot</div>
+          <h1>What do you want to grow?</h1>
+          <p>Describe the outcome in plain language. Alkami Activate assembles the audience, channel mix, messaging, and timing - then projects the return before a dollar is spent.</p>
+        </div>
+
+        <div class="card copilot card-pad" style="margin-bottom:18px;">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);">Start from an objective</div>
+          <div class="obj-grid" id="objGrid">
+            <button class="obj sel" data-obj="deposits">
+              <div class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <b>Grow deposits</b><span>Core &amp; savings balances</span>
+            </button>
+            <button class="obj" data-obj="lending">
+              <div class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div>
+              <b>Drive lending</b><span>HELOC, auto, personal</span>
+            </button>
+            <button class="obj" data-obj="engage">
+              <div class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+              <b>Deepen engagement</b><span>Primacy &amp; product adoption</span>
+            </button>
+            <button class="obj" data-obj="winback">
+              <div class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8m0-5v5h5"/></svg></div>
+              <b>Win back</b><span>At-risk &amp; dormant members</span>
+            </button>
+            <button class="obj" data-obj="recover">
+              <div class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5"/><path d="m8.5 14 2 2 4-4"/></svg></div>
+              <b>Recover applications</b><span>Abandoned account openings</span>
+            </button>
+          </div>
+          <div class="prompt-row">
+            <input id="goalInput" type="text" value="Grow core deposits by winning back members moving money to high-yield fintechs" aria-label="Campaign goal"/>
+            <button class="btn btn-primary" id="genBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>
+              Generate plan
+            </button>
+          </div>
+        </div>
+
+        <div class="plan hidden" id="planArea"></div>
+      </section>
+
+      <!-- ============ AUDIENCES ============ -->
+      <section class="view" id="view-audiences">
+        <div class="page-head">
+          <div class="eyebrow">Audience Builder</div>
+          <h1>Describe who you want. The model finds them.</h1>
+          <p>Alkami Activate resolves plain-language intent against core banking data, credit insights, and 50,000+ behavioral tags - and scores every member for likelihood before you launch.</p>
+        </div>
+
+        <div class="card card-pad" style="margin-bottom:16px;">
+          <div class="prompt-row" style="margin-bottom:14px;">
+            <input type="text" value="Members likely to open a HELOC in the next 90 days" aria-label="Audience description"/>
+            <button class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>Resolve</button>
+          </div>
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:9px;">Model translated your intent into</div>
+          <div class="tag-cloud">
+            <span class="chip">homeowner = true <span class="x">·</span></span>
+            <span class="chip">est. equity &gt; $80k <span class="x">·</span></span>
+            <span class="chip">card_utilization &gt; 45% <span class="x">·</span></span>
+            <span class="chip">tenure ≥ 2y <span class="x">·</span></span>
+            <span class="chip">credit_score ≥ 680 <span class="x">·</span></span>
+            <span class="chip">no_existing_heloc <span class="x">·</span></span>
+            <span class="chip add">+ add condition</span>
+          </div>
+        </div>
+
+        <div class="grid g-2-3" style="margin-bottom:16px;">
+          <div class="card">
+            <div class="card-head"><div><h3>Segment composition</h3><div class="sub">870 members matched · 4.1% of book</div></div></div>
+            <div class="card-pad" style="display:flex; gap:22px; align-items:center;">
+              <svg id="segDonut" width="150" height="150" viewBox="0 0 150 150" style="flex:none;"></svg>
+              <div class="legend" id="segLegend" style="flex:1;"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h3>Predictive fit score</h3><div class="sub">Model likelihood to convert</div></div><span class="ai-badge">Median 0.72</span></div>
+            <div class="card-pad chart-wrap">
+              <svg id="scoreHist" width="100%" height="150"></svg>
+              <div class="tooltip" id="histTip"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div><h3>Top predictive signals</h3><div class="sub">What's driving the score - from the 50,000-tag library</div></div></div>
+          <div class="card-pad">
+            <div class="tag-cloud">
+              <span class="tagx"><b>Home value ↑ 14% in-market</b> · weight 0.28</span>
+              <span class="tagx"><b>Card utilization rising</b> · weight 0.21</span>
+              <span class="tagx"><b>Searched "home equity" in app</b> · weight 0.17</span>
+              <span class="tagx"><b>Direct deposit ≥ $6k/mo</b> · weight 0.12</span>
+              <span class="tagx"><b>Tenure 4.2 yrs</b> · weight 0.09</span>
+              <span class="tagx"><b>Recent large retail spend</b> · weight 0.07</span>
+              <span class="tagx"><b>Opened rate-shopping email</b> · weight 0.06</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ JOURNEYS ============ -->
+      <section class="view" id="view-journeys">
+        <div class="page-head">
+          <div class="eyebrow">Journey Orchestration</div>
+          <h1>HELOC - Rising Equity</h1>
+          <p>One journey, every channel. Members move through on their own timing; branches adapt to what they do. Native to digital banking, so in-app is a first-class channel - not an afterthought.</p>
+        </div>
+
+        <div class="card card-pad" style="margin-bottom:16px;">
+          <div class="journey">
+            <div class="jnode"><div class="jt"><span class="ci" style="background:var(--s4)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg></span>Trigger</div><b>Enters segment</b><span>870 members · HELOC-likely</span></div>
+            <div class="jconn"></div>
+            <div class="jnode"><div class="jt"><span class="ci" style="background:var(--s2)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>Day 0 · Email</div><b>"Your home's been busy"</b><span>Equity-value teaser</span></div>
+            <div class="jconn"></div>
+            <div class="jnode"><div class="jt"><span class="ci" style="background:var(--s3)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M11 18h2"/></svg></span>Day 2 · In-app</div><b>Rate + payment tile</b><span>On dashboard login</span></div>
+            <div class="jconn"></div>
+            <div class="jnode branch"><div class="jt"><span class="ci" style="background:var(--accent)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M6 3v6a3 3 0 0 0 3 3h9M18 8l3 4-3 4"/></svg></span>Branch</div><b>Opened tile?</b><span>Yes → apply nudge · No → SMS</span></div>
+            <div class="jconn"></div>
+            <div class="jnode"><div class="jt"><span class="ci" style="background:var(--s1)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M11 19h2"/></svg></span>Day 5 · SMS</div><b>"Rates locked this week"</b><span>Non-openers only</span></div>
+            <div class="jconn"></div>
+            <div class="jnode"><div class="jt"><span class="ci" style="background:var(--good-mark)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span>Goal</div><b>Application started</b><span>Conversion event</span></div>
+          </div>
+        </div>
+
+        <div class="grid g-4">
+          <div class="card tile"><div class="k-label">In journey now</div><div class="k-val num">612</div><div class="k-foot"><span class="t-sub">of 870 entered</span></div></div>
+          <div class="card tile"><div class="k-label">Tile open rate</div><div class="k-val num">38.4%</div><div class="k-foot"><span class="delta up">▲ vs 12% email</span></div></div>
+          <div class="card tile"><div class="k-label">Applications started</div><div class="k-val num">96</div><div class="k-foot"><span class="t-sub">11% of entered</span></div></div>
+          <div class="card tile"><div class="k-label">Projected funded</div><div class="k-val num">$2.4M</div><div class="k-foot"><span class="delta up">▲ on pace</span></div></div>
+        </div>
+      </section>
+
+      <!-- ============ ANALYTICS ============ -->
+      <section class="view" id="view-analytics">
+        <div class="page-head">
+          <div class="eyebrow">Performance &amp; Attribution</div>
+          <h1>Every dollar, traced to an outcome</h1>
+          <p>Marketing at a community FI has to defend its budget to the board. Alkami Activate attributes deposits and loan revenue back to the campaign, channel, and message that drove them.</p>
+        </div>
+
+        <div class="grid g-4" style="margin-bottom:16px;">
+          <div class="card tile"><div class="k-label">Attributed revenue · QTD</div><div class="k-val num">$7.5M</div><div class="k-foot"><span class="delta up">▲ 22% QoQ</span></div></div>
+          <div class="card tile"><div class="k-label">Marketing spend · QTD</div><div class="k-val num">$560K</div><div class="k-foot"><span class="t-sub">across 4 channels</span></div></div>
+          <div class="card tile"><div class="k-label">Blended ROAS</div><div class="k-val num">13.4×</div><div class="k-foot"><span class="delta up">▲ 1.8×</span></div></div>
+          <div class="card tile"><div class="k-label">Cost per funded acct</div><div class="k-val num">$41</div><div class="k-foot"><span class="delta up">▼ 18% QoQ</span></div></div>
+        </div>
+
+        <div class="grid g-2" style="margin-bottom:16px;">
+          <div class="card">
+            <div class="card-head"><div><h3>Conversion funnel</h3><div class="sub">Summer Savings Boost · 18,400 reached</div></div></div>
+            <div class="card-pad chart-wrap">
+              <svg id="funnel" width="100%" height="210"></svg>
+              <div class="tooltip" id="funnelTip"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h3>ROAS by channel</h3><div class="sub">Revenue returned per $1 spent</div></div></div>
+            <div class="card-pad chart-wrap">
+              <svg id="roasBars" width="100%" height="210"></svg>
+              <div class="tooltip" id="roasTip"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div><h3>Campaign leaderboard</h3><div class="sub">Quarter to date</div></div></div>
+          <div style="overflow-x:auto;">
+          <table>
+            <thead><tr><th>Campaign</th><th>Objective</th><th style="text-align:right;">Spend</th><th style="text-align:right;">Attributed</th><th style="text-align:right;">ROAS</th><th style="text-align:right;">Funded accts</th></tr></thead>
+            <tbody>
+              <tr><td class="t-name">Summer Savings Boost</td><td>Grow deposits</td><td style="text-align:right;" class="num">$284K</td><td style="text-align:right;" class="num">$4.6M</td><td style="text-align:right;" class="num">16.2×</td><td style="text-align:right;" class="num">3,910</td></tr>
+              <tr><td class="t-name">Auto-Loan Refi Winback</td><td>Drive lending</td><td style="text-align:right;" class="num">$164K</td><td style="text-align:right;" class="num">$2.1M</td><td style="text-align:right;" class="num">12.8×</td><td style="text-align:right;" class="num">618</td></tr>
+              <tr><td class="t-name">New Member Primacy</td><td>Deepen engagement</td><td style="text-align:right;" class="num">$84K</td><td style="text-align:right;" class="num">$820K</td><td style="text-align:right;" class="num">9.7×</td><td style="text-align:right;" class="num">1,240</td></tr>
+              <tr><td class="t-name">Financial Wellness Nudges</td><td>Deepen engagement</td><td style="text-align:right;" class="num">$28K</td><td style="text-align:right;" class="num">$190K</td><td style="text-align:right;" class="num">6.8×</td><td style="text-align:right;" class="num">-</td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PRD ============ -->
+      <section class="view" id="view-prd">
+        <div class="page-head prd">
+          <div class="eyebrow">Product Requirements · 1-pager</div>
+          <h1>Alkami Activate - AI Campaign Copilot (concept)</h1>
+        </div>
+        <div class="prd prd-doc">
+          <div class="prd-meta">
+            <span><b>Author</b> Devin Depoint</span>
+            <span><b>Role framing</b> Director, PM - Marketing</span>
+            <span><b>Status</b> Concept prototype</span>
+            <span><b>Date</b> Jul 15, 2026</span>
+          </div>
+
+          <h2>Problem</h2>
+          <p>Marketing teams at community banks and credit unions are small - often one to three people - yet they're expected to grow deposits and loans against national banks and high-yield fintechs. They sit on rich first-party data (core banking, card, credit, digital-banking behavior) but lack the time, data-science, and tooling to turn it into targeted, multi-channel campaigns. Today the work means exporting CSVs, guessing at segments, hand-writing copy, and defending spend with no real attribution.</p>
+
+          <h2>Opportunity</h2>
+          <p>Embed AI directly in the marketer's workflow so a one-person team operates like a ten-person growth org: state a goal in plain language, and the product assembles the audience, channel mix, messaging, and timing - then projects and later proves the return. This deepens the moat of an FI-native platform: the campaigns run <b>inside digital banking</b>, where the member already is.</p>
+
+          <h2>Target users</h2>
+          <ul>
+            <li><b>Marketing Director (primary)</b> - owns growth numbers, needs speed and defensible ROI; not technical.</li>
+            <li><b>Marketing generalist</b> - executes campaigns, wants pre-built plays and good copy, not a segment-query language.</li>
+            <li><b>CFO / board (secondary)</b> - consumes attribution to approve budget.</li>
+          </ul>
+
+          <h2>Goals &amp; non-goals</h2>
+          <ul>
+            <li><b>Goal:</b> Cut time-from-idea-to-live-campaign from ~3 weeks to under a day.</li>
+            <li><b>Goal:</b> Every campaign ships with a pre-launch revenue projection and post-launch attribution.</li>
+            <li><b>Goal:</b> AI is assistive and editable - the marketer always approves audience, copy, and send.</li>
+            <li><b>Non-goal:</b> Replacing the marketer's judgment or auto-sending without a human in the loop.</li>
+            <li><b>Non-goal:</b> A general-purpose CDP or a from-scratch email ESP - we compose on the platform's existing rails.</li>
+          </ul>
+
+          <h2>Requirements</h2>
+          <div class="req">
+            <div class="req-r"><div class="pr p0">P0</div><div class="rd"><b>AI Campaign Copilot</b> - goal in natural language → generated audience, channel mix, per-channel copy, journey timing, and projected outcome. Every element editable.</div></div>
+            <div class="req-r"><div class="pr p0">P0</div><div class="rd"><b>Intent-to-audience resolution</b> - translate plain language into transparent, editable rules over core + credit + behavioral-tag data, with a live count and predictive fit score.</div></div>
+            <div class="req-r"><div class="pr p0">P0</div><div class="rd"><b>Omnichannel journeys</b> - orchestrate email, SMS, in-app (digital banking), and digital ads on one branching canvas keyed to member behavior.</div></div>
+            <div class="req-r"><div class="pr p0">P0</div><div class="rd"><b>Closed-loop attribution</b> - tie funded accounts and loan revenue back to campaign, channel, and message; blended ROAS by default.</div></div>
+            <div class="req-r"><div class="pr p1">P1</div><div class="rd"><b>Opportunity radar</b> - model proactively surfaces ranked, revenue-sized segments (balance migration, life events, onboarding gaps).</div></div>
+            <div class="req-r"><div class="pr p1">P1</div><div class="rd"><b>Out-of-the-box plays</b> - prebuilt, benchmarked campaign templates a marketer can launch same-day.</div></div>
+            <div class="req-r"><div class="pr p1">P1</div><div class="rd"><b>Guardrails</b> - compliance/tone review on generated copy, frequency caps, and audience suppression rules.</div></div>
+          </div>
+
+          <h2>Key flow (the hero)</h2>
+          <p>Marketer picks an objective → types the goal → Copilot returns a full plan (audience → channels → messages → timing → projected ROI) with each block editable → marketer tweaks and approves → journey goes live → performance and attribution flow back into the Overview and Performance views. See the <b>Plan a campaign</b> and <b>Performance</b> tabs of this prototype.</p>
+
+          <div class="callout"><b>Why AI here, not everywhere:</b> AI earns its place at the three points a small team is most blocked - <b>who</b> to target, <b>what</b> to say, and <b>whether it worked</b>. It's assistive and transparent, never an autonomous black box, because these are money-movement decisions at a regulated institution.</div>
+
+          <h2>Success metrics</h2>
+          <ul>
+            <li><b>North Star:</b> Attributed revenue influenced per FI, per quarter.</li>
+            <li><b>Activation:</b> % of FIs that launch an AI-generated campaign within 14 days of access.</li>
+            <li><b>Efficiency:</b> Median time from goal to live campaign.</li>
+            <li><b>Trust:</b> % of AI-generated audiences/copy launched with light edits (proxy for quality).</li>
+            <li><b>Outcome:</b> Blended ROAS and cost-per-funded-account vs. FI's prior baseline.</li>
+          </ul>
+
+          <h2>Risks &amp; open questions</h2>
+          <ul>
+            <li><b>Compliance:</b> generated copy touches lending/deposit claims - needs a review gate and audit trail. Owner: Product + Legal.</li>
+            <li><b>Data readiness:</b> projection quality depends on each FI's data depth; cold-start needs benchmark priors.</li>
+            <li><b>Trust curve:</b> marketers must believe the model - transparency of rules and signals is a feature, not a nicety.</li>
+            <li><b>Open:</b> build vs. partner for the ad-network delivery leg? Pricing model - per-FI seat vs. outcome-based?</li>
+          </ul>
+
+          <h2>Phased plan</h2>
+          <ul>
+            <li><b>Phase 1 - Prove the loop:</b> Copilot for deposits + lending, email + in-app, closed-loop attribution. Design-partner FIs.</li>
+            <li><b>Phase 2 - Scale channels &amp; plays:</b> SMS + digital ads, out-of-the-box play library, opportunity radar.</li>
+            <li><b>Phase 3 - Autonomy with guardrails:</b> always-on journeys, self-optimizing channel/message allocation, benchmarked networks across FIs.</li>
+          </ul>
+        </div>
+        <p class="disclaimer">Unofficial concept prototype exploring an AI copilot for Alkami Activate, created by Devin DePoint for an interview. Not affiliated with, endorsed by, or an official product of Alkami Technology. "ESL Federal Credit Union" is used only as an illustrative example and all data shown is fictional.</p>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  var NS="http://www.w3.org/2000/svg";
+  function el(tag, attrs){ var e=document.createElementNS(NS,tag); for(var k in attrs){ e.setAttribute(k, attrs[k]); } return e; }
+
+  /* ---------- navigation ---------- */
+  var views = document.querySelectorAll(".view");
+  var navs = document.querySelectorAll(".nav-item");
+  function show(id){
+    views.forEach(function(v){ v.classList.toggle("active", v.id==="view-"+id); });
+    navs.forEach(function(n){ n.classList.toggle("active", n.getAttribute("data-view")===id); });
+    document.querySelector(".content").scrollIntoView({block:"start"});
+    window.scrollTo(0,0);
+    if(id==="copilot"){ renderPlan(currentObj, false); }
+  }
+  document.body.addEventListener("click", function(e){
+    var t = e.target.closest("[data-view]");
+    if(t){ show(t.getAttribute("data-view")); }
+  });
+
+  /* ---------- theme ---------- */
+  document.getElementById("themeBtn").addEventListener("click", function(){
+    var root=document.documentElement;
+    var cur = root.getAttribute("data-theme");
+    if(!cur){ cur = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark":"light"; }
+    var next = cur==="dark" ? "light":"dark";
+    root.setAttribute("data-theme", next);
+    setTimeout(drawAll, 30);
+  });
+
+  /* ---------- sparklines ---------- */
+  var sparkData = {
+    deposits:[6,6.4,7,6.8,8,9.2,10,10.6,11.8,12.4,13.5,14.2],
+    loans:[900,940,980,1010,1040,1075,1110,1150,1180,1215,1250,1284],
+    roas:[9.1,9.6,10,10.4,11,11.3,11.8,12.1,12.5,12.9,13.1,13.4],
+    engaged:[54,55,55.8,56.5,57.2,58,58.6,59.2,59.9,60.4,60.9,61.3]
+  };
+  function drawSpark(svg){
+    var key=svg.getAttribute("data-spark"); var d=sparkData[key]; if(!d) return;
+    svg.innerHTML=""; var w=78,h=30,p=3;
+    var min=Math.min.apply(null,d), max=Math.max.apply(null,d), rng=(max-min)||1;
+    var xs=function(i){ return p + i*(w-2*p)/(d.length-1); };
+    var ys=function(v){ return h-p - (v-min)/rng*(h-2*p); };
+    var acc=css("--accent");
+    var dstr="M"+d.map(function(v,i){return xs(i).toFixed(1)+" "+ys(v).toFixed(1);}).join(" L ");
+    var area=dstr+" L "+xs(d.length-1).toFixed(1)+" "+h+" L "+xs(0).toFixed(1)+" "+h+" Z";
+    var gid="sg-"+key;
+    var defs=el("defs",{}); var lg=el("linearGradient",{id:gid,x1:"0",y1:"0",x2:"0",y2:"1"});
+    lg.appendChild(el("stop",{offset:"0",'stop-color':acc,'stop-opacity':"0.28"}));
+    lg.appendChild(el("stop",{offset:"1",'stop-color':acc,'stop-opacity':"0"}));
+    defs.appendChild(lg); svg.appendChild(defs);
+    svg.appendChild(el("path",{d:area,fill:"url(#"+gid+")"}));
+    svg.appendChild(el("path",{d:dstr,fill:"none",stroke:acc,'stroke-width':"1.8",'stroke-linecap':"round",'stroke-linejoin':"round"}));
+    svg.appendChild(el("circle",{cx:xs(d.length-1),cy:ys(d[d.length-1]),r:"2.4",fill:acc}));
+  }
+
+  /* ---------- trend area chart ---------- */
+  var trendData=[
+    {m:"Aug",v:0.62},{m:"Sep",v:0.78},{m:"Oct",v:0.9},{m:"Nov",v:1.05},{m:"Dec",v:1.34},
+    {m:"Jan",v:1.28},{m:"Feb",v:1.5},{m:"Mar",v:1.72},{m:"Apr",v:1.9},{m:"May",v:2.05},{m:"Jun",v:2.22},{m:"Jul",v:2.42}
+  ];
+  function drawTrend(){
+    var svg=document.getElementById("trendChart"); if(!svg) return;
+    var box=svg.getBoundingClientRect(); var w=box.width||640, h=230;
+    svg.setAttribute("viewBox","0 0 "+w+" "+h); svg.innerHTML="";
+    var pl=8, pr=14, pt=14, pb=26;
+    var max=2.6, min=0;
+    var xs=function(i){ return pl + i*(w-pl-pr)/(trendData.length-1); };
+    var ys=function(v){ return pt + (1-(v-min)/(max-min))*(h-pt-pb); };
+    var grid=css("--c-grid"), muted=css("--muted"), acc=css("--c-accent");
+    [0.5,1,1.5,2,2.5].forEach(function(g){
+      svg.appendChild(el("line",{x1:pl,y1:ys(g),x2:w-pr,y2:ys(g),stroke:grid,'stroke-width':"1"}));
+      var tx=el("text",{x:pl,y:ys(g)-4,class:"axis-lbl"}); tx.textContent="$"+g.toFixed(1)+"M"; svg.appendChild(tx);
+    });
+    trendData.forEach(function(d,i){ if(i%2===0){ var tx=el("text",{x:xs(i),y:h-8,class:"axis-lbl",'text-anchor':"middle"}); tx.textContent=d.m; svg.appendChild(tx); }});
+    var line="M"+trendData.map(function(d,i){return xs(i).toFixed(1)+" "+ys(d.v).toFixed(1);}).join(" L ");
+    var area=line+" L "+xs(trendData.length-1).toFixed(1)+" "+ys(0)+" L "+xs(0).toFixed(1)+" "+ys(0)+" Z";
+    var defs=el("defs",{}); var lg=el("linearGradient",{id:"tg",x1:"0",y1:"0",x2:"0",y2:"1"});
+    lg.appendChild(el("stop",{offset:"0",'stop-color':acc,'stop-opacity':"0.24"}));
+    lg.appendChild(el("stop",{offset:"1",'stop-color':acc,'stop-opacity':"0"}));
+    defs.appendChild(lg); svg.appendChild(defs);
+    svg.appendChild(el("path",{d:area,fill:"url(#tg)"}));
+    svg.appendChild(el("path",{d:line,fill:"none",stroke:acc,'stroke-width':"2.4",'stroke-linecap':"round",'stroke-linejoin':"round"}));
+    svg.appendChild(el("circle",{cx:xs(trendData.length-1),cy:ys(trendData[trendData.length-1].v),r:"4",fill:acc,stroke:css("--c-surface"),'stroke-width':"2"}));
+    // hover
+    var focus=el("line",{x1:0,y1:pt,x2:0,y2:h-pb,stroke:acc,'stroke-width':"1",opacity:"0"}); svg.appendChild(focus);
+    var fdot=el("circle",{r:"4",fill:acc,stroke:css("--c-surface"),'stroke-width':"2",opacity:"0"}); svg.appendChild(fdot);
+    var tip=document.getElementById("trendTip");
+    var hit=el("rect",{x:0,y:0,width:w,height:h,fill:"transparent"}); svg.appendChild(hit);
+    hit.addEventListener("mousemove",function(ev){
+      var r=svg.getBoundingClientRect(); var mx=(ev.clientX-r.left)*(w/r.width);
+      var i=Math.max(0,Math.min(trendData.length-1,Math.round((mx-pl)/((w-pl-pr)/(trendData.length-1)))));
+      var px=xs(i),py=ys(trendData[i].v);
+      focus.setAttribute("x1",px);focus.setAttribute("x2",px);focus.setAttribute("opacity","0.35");
+      fdot.setAttribute("cx",px);fdot.setAttribute("cy",py);fdot.setAttribute("opacity","1");
+      tip.style.opacity="1"; tip.style.left=(px/w*r.width)+"px"; tip.style.top=(py/h*r.height)+"px";
+      tip.innerHTML="<b>$"+trendData[i].v.toFixed(2)+"M</b> influenced<br>"+trendData[i].m;
+    });
+    hit.addEventListener("mouseleave",function(){ focus.setAttribute("opacity","0"); fdot.setAttribute("opacity","0"); tip.style.opacity="0"; });
+  }
+
+  /* ---------- channel mix bars (single metric, one hue) ---------- */
+  var chanData=[{n:"In-app",v:3.1},{n:"Email",v:2.4},{n:"Digital ads",v:1.4},{n:"SMS",v:0.6}];
+  function drawChan(){
+    var svg=document.getElementById("chanBars"); if(!svg) return;
+    var box=svg.getBoundingClientRect(); var w=box.width||360,h=150;
+    svg.setAttribute("viewBox","0 0 "+w+" "+h); svg.innerHTML="";
+    var lh=28, gap=(h-chanData.length*lh)/(chanData.length-1||1), max=3.4, lx=0;
+    var acc=css("--c-accent"), track=css("--c-grid");
+    chanData.forEach(function(d,i){
+      var y=i*(lh+gap);
+      svg.appendChild(el("rect",{x:0,y:y,width:w,height:lh,rx:"6",fill:track,opacity:"0.5"}));
+      var bw=Math.max(6,(d.v/max)*w);
+      svg.appendChild(el("rect",{x:0,y:y,width:bw,height:lh,rx:"6",fill:acc}));
+      var tn=el("text",{x:10,y:y+lh/2+4,'font-size':"12.5",'font-weight':"600",fill:"#fff"}); tn.textContent=d.n; svg.appendChild(tn);
+      var tv=el("text",{x:w-4,y:y+lh/2+4,'text-anchor':"end",'font-size':"12.5",'font-weight':"700",fill:css("--ink")}); tv.textContent="$"+d.v.toFixed(1)+"M"; svg.appendChild(tv);
+    });
+  }
+
+  /* ---------- audience donut (categorical) ---------- */
+  var segData=[
+    {n:"Established homeowners",v:44,c:"--s2"},
+    {n:"Move-up buyers",v:27,c:"--s3"},
+    {n:"Recent refinancers",v:18,c:"--s1"},
+    {n:"New-to-equity",v:11,c:"--s4"}
+  ];
+  function drawDonut(){
+    var svg=document.getElementById("segDonut"); if(!svg) return;
+    svg.innerHTML=""; var cx=75,cy=75,r=56,sw=20, total=100, a=-Math.PI/2, gap=0.03;
+    segData.forEach(function(d){
+      var frac=d.v/total, a2=a+frac*2*Math.PI;
+      var x1=cx+r*Math.cos(a+gap),y1=cy+r*Math.sin(a+gap);
+      var x2=cx+r*Math.cos(a2-gap),y2=cy+r*Math.sin(a2-gap);
+      var large=(a2-a)>Math.PI?1:0;
+      svg.appendChild(el("path",{d:"M "+x1+" "+y1+" A "+r+" "+r+" 0 "+large+" 1 "+x2+" "+y2,fill:"none",stroke:css(d.c),'stroke-width':sw,'stroke-linecap':"round"}));
+      a=a2;
+    });
+    var t1=el("text",{x:cx,y:cy-2,'text-anchor':"middle",'font-size':"22",'font-weight':"750",fill:css("--ink")}); t1.textContent="870"; svg.appendChild(t1);
+    var t2=el("text",{x:cx,y:cy+15,'text-anchor':"middle",'font-size':"10.5",fill:css("--muted")}); t2.textContent="members"; svg.appendChild(t2);
+    var leg=document.getElementById("segLegend"); if(leg){ leg.innerHTML="";
+      segData.forEach(function(d){ var row=document.createElement("div"); row.className="lr";
+        row.innerHTML='<span class="sw" style="background:var('+d.c+')"></span>'+d.n+'<span class="lv num">'+d.v+'%</span>'; leg.appendChild(row); });
+    }
+  }
+
+  /* ---------- predictive score histogram ---------- */
+  var histData=[3,5,8,12,18,24,31,42,54,61,58,47,33,22,14,8];
+  function drawHist(){
+    var svg=document.getElementById("scoreHist"); if(!svg) return;
+    var box=svg.getBoundingClientRect(); var w=box.width||360,h=150;
+    svg.setAttribute("viewBox","0 0 "+w+" "+h); svg.innerHTML="";
+    var pb=20,pt=8, n=histData.length, gap=3, bw=(w-(n-1)*gap)/n, max=Math.max.apply(null,histData);
+    var acc=css("--c-accent"); var tip=document.getElementById("histTip");
+    histData.forEach(function(v,i){
+      var bh=(v/max)*(h-pt-pb), x=i*(bw+gap), y=h-pb-bh;
+      var op = i>=8 ? 1 : 0.42;
+      var rect=el("rect",{x:x,y:y,width:bw,height:Math.max(2,bh),rx:"3",fill:acc,opacity:op});
+      rect.addEventListener("mouseenter",function(){
+        var r=svg.getBoundingClientRect(); tip.style.opacity="1";
+        tip.style.left=((x+bw/2)/w*r.width)+"px"; tip.style.top=(y/h*r.height)+"px";
+        tip.innerHTML="<b>"+v+"</b> members<br>score "+(i/n).toFixed(2)+"-"+((i+1)/n).toFixed(2);
+      });
+      rect.addEventListener("mouseleave",function(){ tip.style.opacity="0"; });
+      svg.appendChild(rect);
+    });
+    var mid=el("line",{x1:8*(bw+gap)-gap/2,y1:pt,x2:8*(bw+gap)-gap/2,y2:h-pb,stroke:css("--muted"),'stroke-width':"1",'stroke-dasharray':"3 3"}); svg.appendChild(mid);
+    var l0=el("text",{x:0,y:h-6,class:"axis-lbl"}); l0.textContent="0.0"; svg.appendChild(l0);
+    var l1=el("text",{x:w,y:h-6,class:"axis-lbl",'text-anchor':"end"}); l1.textContent="1.0 likelihood"; svg.appendChild(l1);
+  }
+
+  /* ---------- funnel (ordinal coral ramp, direct-labeled) ---------- */
+  var funnelData=[
+    {n:"Reached",v:18400,c:"#CDEAEC"},
+    {n:"Opened / viewed",v:9660,c:"#93D4D9"},
+    {n:"Clicked to offer",v:4120,c:"#54BCC4"},
+    {n:"Opened account",v:3910,c:"#1F9BA6"}
+  ];
+  function drawFunnel(){
+    var svg=document.getElementById("funnel"); if(!svg) return;
+    var box=svg.getBoundingClientRect(); var w=box.width||360,h=210;
+    svg.setAttribute("viewBox","0 0 "+w+" "+h); svg.innerHTML="";
+    var lh=38, gap=(h-funnelData.length*lh)/(funnelData.length-1), max=funnelData[0].v;
+    var tip=document.getElementById("funnelTip");
+    funnelData.forEach(function(d,i){
+      var y=i*(lh+gap), bw=Math.max(60,(d.v/max)*w);
+      var rect=el("rect",{x:0,y:y,width:bw,height:lh,rx:"6",fill:d.c});
+      rect.addEventListener("mouseenter",function(){ var r=svg.getBoundingClientRect(); tip.style.opacity="1";
+        tip.style.left=(bw/w*r.width/2)+"px"; tip.style.top=(y/h*r.height)+"px";
+        tip.innerHTML="<b>"+d.v.toLocaleString()+"</b> "+d.n+"<br>"+(d.v/max*100).toFixed(1)+"% of reached"; });
+      rect.addEventListener("mouseleave",function(){ tip.style.opacity="0"; });
+      svg.appendChild(rect);
+      var tn=el("text",{x:12,y:y+lh/2-2,'font-size':"12.5",'font-weight':"650",fill:"#08363B"}); tn.textContent=d.n; svg.appendChild(tn);
+      var tv=el("text",{x:12,y:y+lh/2+13,'font-size':"11",fill:"#08363B",opacity:"0.85"}); tv.textContent=d.v.toLocaleString()+" · "+(d.v/max*100).toFixed(0)+"%"; svg.appendChild(tv);
+    });
+  }
+
+  /* ---------- ROAS bars (single metric) ---------- */
+  var roasData=[{n:"In-app",v:19.4},{n:"Email",v:15.1},{n:"SMS",v:11.2},{n:"Digital ads",v:8.6}];
+  function drawRoas(){
+    var svg=document.getElementById("roasBars"); if(!svg) return;
+    var box=svg.getBoundingClientRect(); var w=box.width||360,h=210;
+    svg.setAttribute("viewBox","0 0 "+w+" "+h); svg.innerHTML="";
+    var pb=26,pt=10,pl=6, n=roasData.length, gap=20, bw=(w-pl-(n-1)*gap)/n, max=22;
+    var acc=css("--c-accent"), grid=css("--c-grid"); var tip=document.getElementById("roasTip");
+    [5,10,15,20].forEach(function(g){ var y=pt+(1-g/max)*(h-pt-pb);
+      svg.appendChild(el("line",{x1:pl,y1:y,x2:w,y2:y,stroke:grid,'stroke-width':"1"}));
+      var tx=el("text",{x:pl,y:y-3,class:"axis-lbl"}); tx.textContent=g+"×"; svg.appendChild(tx); });
+    roasData.forEach(function(d,i){
+      var bh=(d.v/max)*(h-pt-pb), x=pl+i*(bw+gap), y=h-pb-bh;
+      var rect=el("rect",{x:x,y:y,width:bw,height:bh,rx:"5",fill:acc});
+      rect.addEventListener("mouseenter",function(){ var r=svg.getBoundingClientRect(); tip.style.opacity="1";
+        tip.style.left=((x+bw/2)/w*r.width)+"px"; tip.style.top=(y/h*r.height)+"px";
+        tip.innerHTML="<b>"+d.v.toFixed(1)+"×</b> ROAS<br>"+d.n; });
+      rect.addEventListener("mouseleave",function(){ tip.style.opacity="0"; });
+      svg.appendChild(rect);
+      var tv=el("text",{x:x+bw/2,y:y-6,'text-anchor':"middle",'font-size':"12",'font-weight':"700",fill:css("--ink")}); tv.textContent=d.v.toFixed(1)+"×"; svg.appendChild(tv);
+      var tn=el("text",{x:x+bw/2,y:h-8,'text-anchor':"middle",'font-size':"11.5",fill:css("--muted")}); tn.textContent=d.n; svg.appendChild(tn);
+    });
+  }
+
+  /* ---------- COPILOT plan content ---------- */
+  var chColors={email:"--s2",sms:"--s1",inapp:"--s3",ads:"--s4"};
+  var chIcon={
+    email:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    sms:'<path d="M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M11 19h2"/>',
+    inapp:'<rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M11 18h2"/>',
+    ads:'<path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1Z"/><path d="M16 9a3 3 0 0 1 0 6"/>'
+  };
+  var chLabel={email:"Email",sms:"SMS",inapp:"In-app (digital banking)",ads:"Digital ads"};
+  var plans={
+    deposits:{
+      goal:"Grow core deposits by winning back members moving money to high-yield fintechs",
+      audName:"Deposit flight risk", audSize:"2,140", audPct:"10.1% of book",
+      audWhy:"Recurring outbound ACH to high-yield fintechs over 3+ months, healthy balances, 2+ yr tenure. High saveable balance, high intent.",
+      channels:["inapp","email","sms"],
+      msgs:[
+        {ch:"email",subj:"Your money could be working harder - right here",bd:"See what a Premier Savings rate does for the $12,400 you moved out last quarter. No new logins, no new app."},
+        {ch:"inapp",subj:"Rate-match tile on dashboard",bd:"“You're earning 0.4% elsewhere. ESL Premier Savings is 4.30% APY.” One tap to open."},
+        {ch:"sms",subj:"SMS · non-openers",bd:"ESL: your Premier Savings offer (4.30% APY) is ready. Open in 2 taps → esl.org/save"}
+      ],
+      timing:"6-day journey · in-app first, email day 1, SMS day 4 to non-openers",
+      lift:"+$3.9M", liftPct:"est. deposits retained + grown", roas:"14.8×", convRate:"9.4%", reached:"2,140"
+    },
+    lending:{
+      goal:"Drive HELOC originations among members with rising home equity",
+      audName:"HELOC-likely, 90 days", audSize:"870", audPct:"4.1% of book",
+      audWhy:"Homeowners with est. equity >$80k, rising card utilization, tenure ≥2y, credit ≥680, no existing HELOC. Strong life-event fit.",
+      channels:["email","inapp","ads"],
+      msgs:[
+        {ch:"email",subj:"Your home's been busy building value",bd:"Homes near you are up 14%. Tap your equity for a renovation or to consolidate - rates from 7.9% APR."},
+        {ch:"inapp",subj:"Equity + payment estimator tile",bd:"“You may have ~$92k in available equity.” Live payment slider, pre-fill application."},
+        {ch:"ads",subj:"Digital ads · lookalike retarget",bd:"Home-equity creative to matched audience + in-market lookalikes for reach beyond the book."}
+      ],
+      timing:"Branching journey · email day 0, in-app day 2, SMS day 5 to non-openers",
+      lift:"+$2.4M", liftPct:"projected funded loan volume", roas:"11.6×", convRate:"11.0%", reached:"870"
+    },
+    engage:{
+      goal:"Deepen engagement by getting new members to a second product",
+      audName:"New members, single product", audSize:"1,530", audPct:"7.2% of book",
+      audWhy:"Opened checking <60 days ago, no direct deposit set, no 2nd product. Prime window to establish primacy.",
+      channels:["inapp","email"],
+      msgs:[
+        {ch:"inapp",subj:"Set up direct deposit checklist",bd:"Progress tile: “You're 2 steps from getting the most from ESL.” Guided direct-deposit switch."},
+        {ch:"email",subj:"3 things to finish your setup",bd:"Turn on direct deposit, add your card to your wallet, set a savings goal - 4 minutes total."}
+      ],
+      timing:"14-day onboarding journey · in-app milestones + 2 email nudges",
+      lift:"+$1.1M", liftPct:"projected lifetime value lift", roas:"9.9×", convRate:"27%", reached:"1,530"
+    },
+    winback:{
+      goal:"Win back dormant and at-risk members before they close",
+      audName:"At-risk & dormant", audSize:"3,280", audPct:"15.5% of book",
+      audWhy:"Login frequency down 60%+ over 90 days, falling balances, no recent transactions. Attrition-model top decile.",
+      channels:["email","sms","inapp"],
+      msgs:[
+        {ch:"email",subj:"We've made some things better since you've been gone",bd:"New higher savings rates, faster payments, and a refreshed app. Here's what's changed."},
+        {ch:"sms",subj:"SMS · gentle re-engage",bd:"ESL: it's been a while! See what's new + a little thank-you when you log in → esl.org/hi"},
+        {ch:"inapp",subj:"Welcome-back banner",bd:"Personalized “here's what's new” banner on next login with a single primary action."}
+      ],
+      timing:"10-day journey · email day 0, in-app on return, SMS day 6 to non-returners",
+      lift:"+$1.6M", liftPct:"balances retained from churn", roas:"7.4×", convRate:"14%", reached:"3,280"
+    },
+    recover:{
+      goal:"Recover members who started opening an account but didn't finish",
+      audName:"Abandoned applications, 30 days", audSize:"1,120", audPct:"in-progress openings",
+      audWhy:"Started a checking or savings application in the last 30 days and stalled before funding. Identity already verified, high intent, one step from converting - the cheapest account you'll ever win.",
+      channels:["email","sms","inapp"],
+      msgs:[
+        {ch:"email",subj:"You're two minutes from done",bd:"Your ESL account is saved and ready. Add an opening deposit to finish - we'll pick up right where you left off."},
+        {ch:"sms",subj:"SMS - stalled at funding",bd:"ESL: your new account is almost ready. Finish in 2 taps and you're in -> esl.org/finish"},
+        {ch:"inapp",subj:"Resume application banner",bd:"For applicants who abandoned mid-session: a one-tap 'Resume your application' banner the next time they open the app."}
+      ],
+      timing:"5-day recovery journey - email day 0, SMS day 2, final nudge day 4 to non-finishers",
+      lift:"+$1.3M", liftPct:"funded volume from recovered apps", roas:"18.2×", convRate:"31%", reached:"1,120"
+    }
+  };
+  var currentObj="deposits";
+
+  function svgIcon(paths, stroke){ return '<svg viewBox="0 0 24 24" fill="none" stroke="'+(stroke||"#fff")+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+paths+'</svg>'; }
+
+  function renderPlan(objKey, animate){
+    var area=document.getElementById("planArea"); if(!area) return;
+    var p=plans[objKey]; if(!p){ area.classList.add("hidden"); return; }
+    var chanChips=p.channels.map(function(c){ return '<span class="chip" style="font-family:var(--font-sans)"><span style="display:inline-grid;place-items:center;width:16px;height:16px;border-radius:4px;background:var('+chColors[c]+');">'+svgIcon(chIcon[c])+'</span> '+chLabel[c]+'</span>'; }).join(" ");
+    var msgHtml=p.msgs.map(function(m){
+      return '<div class="msg"><div class="msg-top"><span class="ch" style="background:var('+chColors[m.ch]+')">'+svgIcon(chIcon[m.ch])+'</span>'+chLabel[m.ch]+'</div>'+
+        '<div class="msg-body"><div class="subj">'+m.subj+'</div><div class="bd">'+m.bd+'</div>'+
+        '<span class="edit"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Edit &amp; regenerate</span></div></div>';
+    }).join("");
+
+    var blocks=[
+      '<div class="plan-block"><div class="pb-head"><span class="step">1</span>Recommended audience &nbsp;<span class="ai-badge" style="margin-left:auto">'+p.audSize+' members</span></div>'+
+        '<div class="pb-body"><div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;"><div style="flex:1;min-width:220px;"><div style="font-weight:650;font-size:15px;margin-bottom:4px;">'+p.audName+'</div><p style="margin:0;color:var(--ink-2);font-size:13.5px;">'+p.audWhy+'</p></div>'+
+        '<div style="text-align:right;"><div class="num" style="font-size:26px;font-weight:760;letter-spacing:-.02em;">'+p.audSize+'</div><div class="t-sub">'+p.audPct+'</div></div></div>'+
+        '<div style="margin-top:12px;"><button class="btn btn-ghost" data-view="audiences">Inspect &amp; edit rules →</button></div></div></div>',
+
+      '<div class="plan-block"><div class="pb-head"><span class="step">2</span>Channel mix</div>'+
+        '<div class="pb-body"><div style="display:flex;gap:8px;flex-wrap:wrap;">'+chanChips+'</div>'+
+        '<p style="margin:10px 0 0;color:var(--ink-2);font-size:13px;">In-app leads because these members are already in digital banking - it converts at ~3× email for on-platform offers.</p></div></div>',
+
+      '<div class="plan-block"><div class="pb-head"><span class="step">3</span>Generated messaging &nbsp;<span class="ai-badge" style="margin-left:auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>Draft · you approve</span></div>'+
+        '<div class="pb-body">'+msgHtml+'<p style="margin:12px 0 0;font-size:12px;color:var(--muted);">Every draft is checked against your compliance tone rules before it can send.</p></div></div>',
+
+      '<div class="plan-block"><div class="pb-head"><span class="step">4</span>Timing &amp; journey</div>'+
+        '<div class="pb-body"><p style="margin:0 0 12px;color:var(--ink-2);font-size:13.5px;">'+p.timing+'</p><button class="btn btn-ghost" data-view="journeys">Open journey canvas →</button></div></div>',
+
+      '<div class="plan-block"><div class="pb-head"><span class="step">5</span>Projected outcome &nbsp;<span class="ai-badge" style="margin-left:auto">Before you spend a dollar</span></div>'+
+        '<div class="pb-body"><div class="outcome-grid"><div class="proj">'+
+          '<div class="proj-row"><span class="pl">Revenue impact</span><span class="pv num">'+p.lift+' <small>'+p.liftPct+'</small></span></div>'+
+          '<div class="proj-row"><span class="pl">Projected ROAS</span><span class="pv num">'+p.roas+'</span></div>'+
+          '<div class="proj-row"><span class="pl">Est. conversion</span><span class="pv num">'+p.convRate+'</span></div>'+
+          '<div class="proj-row"><span class="pl">Members reached</span><span class="pv num">'+p.reached+'</span></div>'+
+        '</div><div style="text-align:center;"><div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:6px;">Confidence</div>'+
+          '<div style="font-size:15px;font-weight:650;color:var(--good);">High - based on 3 comparable plays</div>'+
+          '<div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;"><button class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>Approve &amp; schedule</button><button class="btn btn-ghost">Save as draft</button></div>'+
+        '</div></div></div></div>'
+    ];
+
+    area.innerHTML=blocks.join("");
+    area.classList.remove("hidden");
+    var bs=area.querySelectorAll(".plan-block");
+    bs.forEach(function(b,i){
+      if(animate && !reduce){ b.classList.add("reveal"); b.style.animationDelay=(i*0.14)+"s"; }
+    });
+  }
+
+  /* objective selection */
+  document.getElementById("objGrid").addEventListener("click", function(e){
+    var b=e.target.closest(".obj"); if(!b) return;
+    this.querySelectorAll(".obj").forEach(function(o){ o.classList.remove("sel"); });
+    b.classList.add("sel");
+    currentObj=b.getAttribute("data-obj");
+    document.getElementById("goalInput").value=plans[currentObj].goal;
+    renderPlan(currentObj, true);
+  });
+  document.getElementById("genBtn").addEventListener("click", function(){
+    var area=document.getElementById("planArea");
+    area.classList.add("hidden");
+    var btn=this; var old=btn.innerHTML;
+    btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin .8s linear infinite"><path d="M12 3a9 9 0 1 0 9 9"/></svg>Assembling…';
+    setTimeout(function(){ btn.innerHTML=old; renderPlan(currentObj, true); area.scrollIntoView({behavior: reduce?"auto":"smooth", block:"nearest"}); }, reduce?0:650);
+  });
+
+  /* ---------- draw everything ---------- */
+  function drawAll(){
+    document.querySelectorAll(".spark").forEach(drawSpark);
+    drawTrend(); drawChan(); drawDonut(); drawHist(); drawFunnel(); drawRoas();
+  }
+  var spinStyle=document.createElement("style"); spinStyle.textContent="@keyframes spin{to{transform:rotate(360deg)}}"; document.head.appendChild(spinStyle);
+
+  window.addEventListener("resize", function(){ clearTimeout(window.__rt); window.__rt=setTimeout(drawAll,150); });
+  renderPlan("deposits", false);
+  drawAll();
+})();
+</script>
