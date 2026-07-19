@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Anchor - product spec (1-page PRD). An unofficial AI campaign copilot concept for community-bank and credit-union marketers.">
+<title>Anchor - Product Spec (PRD)</title>
+<style>
+  :root {
+    --font-sans: -apple-system, "SF Pro Display", "Segoe UI", system-ui, Roboto, Helvetica, Arial, sans-serif;
+    --bg:#EEF0F8; --surface:#FFFFFF; --surface-2:#F5F6FC;
+    --ink:#16204A; --ink-2:#4C5578; --muted:#878FAD;
+    --border:#E4E7F2; --border-strong:#D2D7E7;
+    --accent:#2536A8; --accent-ink:#223089; --accent-soft:#E7EAF8;
+    --cta:#F2B441; --cta-ink:#1A2350;
+    --shadow: 0 4px 20px rgba(22,32,74,.10);
+    --radius: 16px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0E1436; --surface:#171E45; --surface-2:#1F2757;
+      --ink:#EEF0FA; --ink-2:#AEB6D6; --muted:#7C84A8;
+      --border:#2A3260; --border-strong:#3A4270;
+      --accent:#6E8AF2; --accent-ink:#9DB0F7; --accent-soft:#1E2750;
+      --cta:#F2B441; --cta-ink:#16204A;
+      --shadow: 0 10px 34px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:#0E1436; --surface:#171E45; --surface-2:#1F2757;
+    --ink:#EEF0FA; --ink-2:#AEB6D6; --muted:#7C84A8;
+    --border:#2A3260; --border-strong:#3A4270;
+    --accent:#6E8AF2; --accent-ink:#9DB0F7; --accent-soft:#1E2750; --cta-ink:#16204A;
+  }
+  * { box-sizing: border-box; }
+  html,body { margin:0; padding:0; }
+  body { font-family: var(--font-sans); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; line-height: 1.5; }
+
+  .band {
+    background: linear-gradient(150deg, #2A3AAE 0%, #1B2576 100%);
+    color:#fff; padding: 30px 24px 96px;
+  }
+  .band-in { max-width: 820px; margin: 0 auto; }
+  .backlink { display:inline-flex; align-items:center; gap:7px; color: rgba(255,255,255,.82); text-decoration:none; font-size:13px; font-weight:550; margin-bottom: 22px; }
+  .backlink:hover { color:#fff; }
+  .backlink svg { width:14px; height:14px; }
+  .brand { display:flex; align-items:center; gap:11px; margin-bottom: 24px; }
+  .brand-mark { width:34px; height:34px; border-radius:10px; background: linear-gradient(145deg,#F4BC4E,#E6A62E); display:grid; place-items:center; flex:none; box-shadow: 0 4px 12px rgba(0,0,0,.28); }
+  .brand-mark svg { width:19px; height:19px; }
+  .brand-name { font-weight: 750; font-size: 17px; letter-spacing:-.02em; }
+  .brand-name span { color: rgba(255,255,255,.6); font-weight:550; }
+  .eyebrow { font-size:11px; text-transform:uppercase; letter-spacing:.13em; font-weight:700; color:#F2B441; }
+  .band h1 { font-size: 30px; letter-spacing:-.025em; margin: 8px 0 0; font-weight: 770; text-wrap:balance; max-width: 18ch; }
+
+  .wrap { max-width: 820px; margin: -68px auto 60px; padding: 0 24px; }
+  .doc { background: var(--surface); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 38px 44px; }
+
+  .meta { display:flex; flex-wrap:wrap; gap: 8px 26px; padding-bottom: 20px; border-bottom:1px solid var(--border); margin-bottom: 6px; font-size:12.5px; color: var(--muted); }
+  .meta b { color: var(--ink); font-weight:600; }
+
+  .doc h2 { font-size:20px; letter-spacing:-.02em; margin: 30px 0 10px; font-weight:730; }
+  .doc h2:first-of-type { margin-top: 22px; }
+  .doc p, .doc li { font-size:14.5px; color: var(--ink-2); line-height:1.64; }
+  .doc ul { margin: 6px 0; padding-left: 20px; }
+  .doc li { margin: 5px 0; }
+  .doc li b, .doc p b { color: var(--ink); font-weight:650; }
+
+  .req { border:1px solid var(--border); border-radius:10px; overflow:hidden; margin: 12px 0; }
+  .req-r { display:grid; grid-template-columns: 58px 1fr; border-bottom:1px solid var(--border); }
+  .req-r:last-child { border-bottom:none; }
+  .req-r .pr { padding:12px; font-size:11px; font-weight:750; letter-spacing:.04em; display:flex; align-items:flex-start; justify-content:center; }
+  .req-r .pr.p0 { color: var(--cta-ink); background: var(--cta); }
+  .req-r .pr.p1 { color: var(--accent-ink); background: var(--accent-soft); }
+  .req-r .rd { padding:12px 15px; font-size:13.5px; color: var(--ink-2); border-left:1px solid var(--border); }
+  .req-r .rd b { color: var(--ink); font-weight:650; }
+
+  .callout { background: var(--accent-soft); border:1px solid color-mix(in srgb, var(--accent) 34%, transparent); border-radius:10px; padding: 13px 16px; font-size:13.5px; color: var(--accent-ink); margin: 16px 0; }
+  .callout b { color: var(--accent-ink); }
+
+  .foot { max-width: 820px; margin: 0 auto; padding: 0 24px 40px; font-size:11.5px; color: var(--muted); text-align:center; }
+  .foot a { color: var(--accent-ink); }
+
+  @media (max-width: 620px){
+    .doc { padding: 26px 22px; }
+    .band { padding: 24px 20px 92px; }
+    .band h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+  <header class="band">
+    <div class="band-in">
+      <a class="backlink" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        Back to the interactive prototype
+      </a>
+      <div class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1A2350" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4.5l2.5-7 4.5 14 2.5-7H22"/></svg>
+        </div>
+        <div class="brand-name">Anchor<span> ·&nbsp;Studio</span></div>
+      </div>
+      <div class="eyebrow">Product Requirements · 1-pager</div>
+      <h1>Anchor - AI Campaign Copilot for community FIs</h1>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="doc">
+      <div class="meta">
+        <span><b>Author</b> Devin DePoint</span>
+        <span><b>Role framing</b> Director, PM - Marketing</span>
+        <span><b>Status</b> Concept prototype</span>
+        <span><b>Date</b> Jul 2026</span>
+      </div>
+
+      <h2>Problem</h2>
+      <p>Marketing teams at community banks and credit unions are small - often one to three people - yet they're expected to grow deposits and loans against national banks and high-yield fintechs. They sit on rich first-party data (core banking, card, credit, digital-banking behavior) but lack the time, data-science, and tooling to turn it into targeted, multi-channel campaigns. Today the work means exporting CSVs, guessing at segments, hand-writing copy, and defending spend with no real attribution.</p>
+
+      <h2>Opportunity</h2>
+      <p>Embed AI directly in the marketer's workflow so a one-person team operates like a ten-person growth org: state a goal in plain language, and the product assembles the audience, channel mix, messaging, and timing - then projects and later proves the return. This deepens the moat of an FI-native platform: the campaigns run <b>inside digital banking</b>, where the member already is.</p>
+
+      <h2>Target users</h2>
+      <ul>
+        <li><b>Marketing Director (primary)</b> - owns growth numbers, needs speed and defensible ROI; not technical.</li>
+        <li><b>Marketing generalist</b> - executes campaigns, wants pre-built plays and good copy, not a segment-query language.</li>
+        <li><b>CFO / board (secondary)</b> - consumes attribution to approve budget.</li>
+      </ul>
+
+      <h2>Goals &amp; non-goals</h2>
+      <ul>
+        <li><b>Goal:</b> Cut time-from-idea-to-live-campaign from ~3 weeks to under a day.</li>
+        <li><b>Goal:</b> Every campaign ships with a pre-launch revenue projection and post-launch attribution.</li>
+        <li><b>Goal:</b> AI is assistive and editable - the marketer always approves audience, copy, and send.</li>
+        <li><b>Non-goal:</b> Replacing the marketer's judgment or auto-sending without a human in the loop.</li>
+        <li><b>Non-goal:</b> A general-purpose CDP or a from-scratch email ESP - we compose on the platform's existing rails.</li>
+      </ul>
+
+      <h2>Requirements</h2>
+      <div class="req">
+        <div class="req-r"><div class="pr p0">P0</div><div class="rd"><b>AI Campaign Copilot</b> - goal in natural language to a generated audience, channel mix, per-channel copy, journey timing, and projected outcome. Every element editable.</div></div>
+        <div class="req-r"><div class="pr p0">P0</div><div class="rd"><b>Intent-to-audience resolution</b> - translate plain language into transparent, editable rules over core + credit + behavioral-tag data, with a live count and predictive fit score.</div></div>
+        <div class="req-r"><div class="pr p0">P0</div><div class="rd"><b>Omnichannel journeys</b> - orchestrate email, SMS, in-app (digital banking), and digital ads on one branching canvas keyed to member behavior.</div></div>
+        <div class="req-r"><div class="pr p0">P0</div><div class="rd"><b>Closed-loop attribution</b> - tie funded accounts and loan revenue back to campaign, channel, and message; blended ROAS by default.</div></div>
+        <div class="req-r"><div class="pr p1">P1</div><div class="rd"><b>Opportunity radar</b> - model proactively surfaces ranked, revenue-sized segments (balance migration, life events, onboarding gaps).</div></div>
+        <div class="req-r"><div class="pr p1">P1</div><div class="rd"><b>Out-of-the-box plays</b> - prebuilt, benchmarked campaign templates a marketer can launch same-day.</div></div>
+        <div class="req-r"><div class="pr p1">P1</div><div class="rd"><b>Guardrails</b> - compliance/tone review on generated copy, frequency caps, and audience suppression rules.</div></div>
+      </div>
+
+      <h2>Key flow (the hero)</h2>
+      <p>Marketer picks an objective, types the goal, and the Copilot returns a full plan (audience to channels to messages to timing to projected ROI) with each block editable. The marketer tweaks and approves, the journey goes live, and performance and attribution flow back into the Overview and Performance views. See the <b>Plan a campaign</b> and <b>Performance</b> views of the interactive prototype.</p>
+
+      <div class="callout"><b>Why AI here, not everywhere:</b> AI earns its place at the three points a small team is most blocked - <b>who</b> to target, <b>what</b> to say, and <b>whether it worked</b>. It's assistive and transparent, never an autonomous black box, because these are money-movement decisions at a regulated institution.</div>
+
+      <h2>Success metrics</h2>
+      <ul>
+        <li><b>North Star:</b> Attributed revenue influenced per FI, per quarter.</li>
+        <li><b>Activation:</b> % of FIs that launch an AI-generated campaign within 14 days of access.</li>
+        <li><b>Efficiency:</b> Median time from goal to live campaign.</li>
+        <li><b>Trust:</b> % of AI-generated audiences/copy launched with light edits (proxy for quality).</li>
+        <li><b>Outcome:</b> Blended ROAS and cost-per-funded-account vs. the FI's prior baseline.</li>
+      </ul>
+
+      <h2>Risks &amp; open questions</h2>
+      <ul>
+        <li><b>Compliance:</b> generated copy touches lending/deposit claims - needs a review gate and audit trail. Owner: Product + Legal.</li>
+        <li><b>Data readiness:</b> projection quality depends on each FI's data depth; cold-start needs benchmark priors.</li>
+        <li><b>Trust curve:</b> marketers must believe the model - transparency of rules and signals is a feature, not a nicety.</li>
+        <li><b>Open:</b> build vs. partner for the ad-network delivery leg? Pricing model - per-FI seat vs. outcome-based?</li>
+      </ul>
+
+      <h2>Phased plan</h2>
+      <ul>
+        <li><b>Phase 1 - Prove the loop:</b> Copilot for deposits + lending, email + in-app, closed-loop attribution. Design-partner FIs.</li>
+        <li><b>Phase 2 - Scale channels &amp; plays:</b> SMS + digital ads, out-of-the-box play library, opportunity radar.</li>
+        <li><b>Phase 3 - Autonomy with guardrails:</b> always-on journeys, self-optimizing channel/message allocation, benchmarked networks across FIs.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="foot">Anchor is an unofficial concept prototype created by Devin DePoint for an interview. Not affiliated with, endorsed by, or an official product of Alkami Technology. "ESL Federal Credit Union" is used only as an illustrative example and all data shown is fictional. &nbsp;·&nbsp; <a href="index.html">Open the interactive prototype</a></p>
+</body>
+</html>
