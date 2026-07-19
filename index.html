@@ -1,24 +1,26 @@
-<title>Alkami Activate - Marketing Studio (concept)</title>
+<title>Anchor - Marketing Studio</title>
 <style>
   :root {
     --font-sans: -apple-system, "SF Pro Display", "Segoe UI", system-ui, Roboto, Helvetica, Arial, sans-serif;
     --font-mono: ui-monospace, "SF Mono", Menlo, "Cascadia Code", monospace;
 
-    /* neutrals biased cool/navy toward the teal brand */
-    --bg:            #EDF3F4;
+    /* Alkami-inspired: royal blue brand + gold accent, cool navy neutrals */
+    --bg:            #EEF0F8;
     --surface:       #FFFFFF;
-    --surface-2:     #F4F8F9;
-    --ink:           #12242F;
-    --ink-2:         #47585F;
-    --muted:         #7A8B92;
-    --border:        #E1E9EB;
-    --border-strong: #CEDADD;
+    --surface-2:     #F5F6FC;
+    --ink:           #16204A;
+    --ink-2:         #4C5578;
+    --muted:         #878FAD;
+    --border:        #E4E7F2;
+    --border-strong: #D2D7E7;
 
-    --accent:        #0A8D9A;
-    --accent-press:  #077885;
-    --accent-ink:    #0A6C77;
-    --accent-soft:   #E0F1F2;
-    --brand2:        #E0631B;
+    --accent:        #2536A8;
+    --accent-press:  #1D2C8C;
+    --accent-ink:    #223089;
+    --accent-soft:   #E7EAF8;
+    --cta:           #F2B441;
+    --cta-press:     #E3A52C;
+    --cta-ink:       #1A2350;
 
     --good:          #1a7d2b;
     --good-mark:     #0ca30c;
@@ -28,35 +30,37 @@
 
     /* chart roles */
     --c-surface:   #FFFFFF;
-    --c-grid:      #E6EDEF;
-    --c-axis:      #C3CFD2;
-    --c-accent:    #0A8D9A;
+    --c-grid:      #E7E9F3;
+    --c-axis:      #C3C8DD;
+    --c-accent:    #2536A8;
     --s1:          #eb6834; /* orange  */
     --s2:          #2a78d6; /* blue    */
     --s3:          #1baf7a; /* aqua    */
     --s4:          #4a3aa7; /* violet  */
 
-    --shadow-sm: 0 1px 2px rgba(18,36,47,.06), 0 1px 3px rgba(18,36,47,.05);
-    --shadow-md: 0 4px 14px rgba(18,36,47,.09), 0 2px 6px rgba(18,36,47,.06);
-    --shadow-lg: 0 18px 48px rgba(18,36,47,.18);
+    --shadow-sm: 0 1px 2px rgba(22,32,74,.06), 0 1px 3px rgba(22,32,74,.05);
+    --shadow-md: 0 4px 14px rgba(22,32,74,.09), 0 2px 6px rgba(22,32,74,.06);
+    --shadow-lg: 0 18px 48px rgba(22,32,74,.18);
     --radius: 14px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg:            #0C1519;
-      --surface:       #13212A;
-      --surface-2:     #1B2B34;
-      --ink:           #EAF1F2;
-      --ink-2:         #A6B4BB;
-      --muted:         #78888F;
-      --border:        #253640;
-      --border-strong: #33474F;
+      --bg:            #0E1436;
+      --surface:       #171E45;
+      --surface-2:     #1F2757;
+      --ink:           #EEF0FA;
+      --ink-2:         #AEB6D6;
+      --muted:         #7C84A8;
+      --border:        #2A3260;
+      --border-strong: #3A4270;
 
-      --accent:        #18B4C0;
-      --accent-press:  #33C6D0;
-      --accent-ink:    #45C8D1;
-      --accent-soft:   #0F2E33;
-      --brand2:        #F0752B;
+      --accent:        #6E8AF2;
+      --accent-press:  #86A0F6;
+      --accent-ink:    #9DB0F7;
+      --accent-soft:   #1E2750;
+      --cta:           #F2B441;
+      --cta-press:     #F6C25E;
+      --cta-ink:       #16204A;
 
       --good:          #0ca30c;
       --good-mark:     #0ca30c;
@@ -64,10 +68,10 @@
       --warn-mark:     #fab219;
       --crit:          #e66767;
 
-      --c-surface:   #13212A;
-      --c-grid:      #253640;
-      --c-axis:      #33474F;
-      --c-accent:    #18B4C0;
+      --c-surface:   #171E45;
+      --c-grid:      #2A3260;
+      --c-axis:      #3A4270;
+      --c-accent:    #6E8AF2;
       --s1:          #d95926;
       --s2:          #3987e5;
       --s3:          #199e70;
@@ -75,19 +79,21 @@
     }
   }
   :root[data-theme="light"] {
-    --bg:#EDF3F4; --surface:#FFFFFF; --surface-2:#F4F8F9; --ink:#12242F; --ink-2:#47585F;
-    --muted:#7A8B92; --border:#E1E9EB; --border-strong:#CEDADD;
-    --accent:#0A8D9A; --accent-press:#077885; --accent-ink:#0A6C77; --accent-soft:#E0F1F2; --brand2:#E0631B;
+    --bg:#EEF0F8; --surface:#FFFFFF; --surface-2:#F5F6FC; --ink:#16204A; --ink-2:#4C5578;
+    --muted:#878FAD; --border:#E4E7F2; --border-strong:#D2D7E7;
+    --accent:#2536A8; --accent-press:#1D2C8C; --accent-ink:#223089; --accent-soft:#E7EAF8;
+    --cta:#F2B441; --cta-press:#E3A52C; --cta-ink:#1A2350;
     --good:#1a7d2b; --good-mark:#0ca30c; --warn:#b9791a; --warn-mark:#fab219; --crit:#C11826;
-    --c-surface:#FFFFFF; --c-grid:#E6EDEF; --c-axis:#C3CFD2; --c-accent:#0A8D9A;
+    --c-surface:#FFFFFF; --c-grid:#E7E9F3; --c-axis:#C3C8DD; --c-accent:#2536A8;
     --s1:#eb6834; --s2:#2a78d6; --s3:#1baf7a; --s4:#4a3aa7;
   }
   :root[data-theme="dark"] {
-    --bg:#0C1519; --surface:#13212A; --surface-2:#1B2B34; --ink:#EAF1F2; --ink-2:#A6B4BB;
-    --muted:#78888F; --border:#253640; --border-strong:#33474F;
-    --accent:#18B4C0; --accent-press:#33C6D0; --accent-ink:#45C8D1; --accent-soft:#0F2E33; --brand2:#F0752B;
+    --bg:#0E1436; --surface:#171E45; --surface-2:#1F2757; --ink:#EEF0FA; --ink-2:#AEB6D6;
+    --muted:#7C84A8; --border:#2A3260; --border-strong:#3A4270;
+    --accent:#6E8AF2; --accent-press:#86A0F6; --accent-ink:#9DB0F7; --accent-soft:#1E2750;
+    --cta:#F2B441; --cta-press:#F6C25E; --cta-ink:#16204A;
     --good:#0ca30c; --good-mark:#0ca30c; --warn:#fab219; --warn-mark:#fab219; --crit:#e66767;
-    --c-surface:#13212A; --c-grid:#253640; --c-axis:#33474F; --c-accent:#18B4C0;
+    --c-surface:#171E45; --c-grid:#2A3260; --c-axis:#3A4270; --c-accent:#6E8AF2;
     --s1:#d95926; --s2:#3987e5; --s3:#199e70; --s4:#9085e9;
   }
 
@@ -199,8 +205,8 @@
     display:inline-flex; align-items:center; gap:8px; white-space:nowrap;
   }
   .btn svg{width:15px;height:15px;}
-  .btn-primary { background: var(--accent); color:#fff; box-shadow: 0 2px 8px rgba(10,141,154,.3); }
-  .btn-primary:hover { background: var(--accent-press); }
+  .btn-primary { background: var(--cta); color: var(--cta-ink); box-shadow: 0 2px 10px rgba(242,180,65,.4); }
+  .btn-primary:hover { background: var(--cta-press); }
   .btn-ghost { background: var(--surface); color: var(--ink); border-color: var(--border-strong); }
   .btn-ghost:hover { background: var(--surface-2); }
   .btn-soft { background: var(--accent-soft); color: var(--accent-ink); }
@@ -402,6 +408,21 @@
   @media (prefers-reduced-motion: reduce){
     .view, .reveal { animation: none !important; opacity:1 !important; transform:none !important; }
   }
+
+  /* ---- Alkami blue sidebar chrome (fixed across themes) ---- */
+  .side { background: linear-gradient(168deg, #2A3AAE 0%, #1B2576 100%); border-right: 1px solid rgba(255,255,255,.10); }
+  .side .brand-name { color:#fff; }
+  .side .brand-name span { color: rgba(255,255,255,.62); font-weight:550; }
+  .side .brand-mark { background: linear-gradient(145deg,#F4BC4E,#E6A62E); box-shadow: 0 4px 12px rgba(0,0,0,.28); }
+  .side .brand-mark svg { stroke: #1A2350; }
+  .side .nav-label { color: rgba(255,255,255,.5); }
+  .side .nav-item { color: rgba(255,255,255,.82); }
+  .side .nav-item:hover { background: rgba(255,255,255,.09); color:#fff; }
+  .side .nav-item.active { background: rgba(255,255,255,.15); color:#fff; }
+  .side .nav-item.active svg { opacity:1; }
+  .side .side-foot { border-top: 1px solid rgba(255,255,255,.14); }
+  .side .side-foot .who b { color:#fff; }
+  .side .side-foot .who span { color: rgba(255,255,255,.6); }
 </style>
 
 <div class="app">
@@ -411,7 +432,7 @@
       <div class="brand-mark">
         <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4.5l2.5-7 4.5 14 2.5-7H22"/></svg>
       </div>
-      <div class="brand-name">Alkami<span>&nbsp;Activate</span></div>
+      <div class="brand-name">Anchor<span> ·&nbsp;Studio</span></div>
     </div>
 
     <div class="nav-label">Grow</div>
@@ -578,7 +599,7 @@
         <div class="page-head">
           <div class="eyebrow">AI Campaign Copilot</div>
           <h1>What do you want to grow?</h1>
-          <p>Describe the outcome in plain language. Alkami Activate assembles the audience, channel mix, messaging, and timing - then projects the return before a dollar is spent.</p>
+          <p>Describe the outcome in plain language. Anchor assembles the audience, channel mix, messaging, and timing - then projects the return before a dollar is spent.</p>
         </div>
 
         <div class="card copilot card-pad" style="margin-bottom:18px;">
@@ -622,7 +643,7 @@
         <div class="page-head">
           <div class="eyebrow">Audience Builder</div>
           <h1>Describe who you want. The model finds them.</h1>
-          <p>Alkami Activate resolves plain-language intent against core banking data, credit insights, and 50,000+ behavioral tags - and scores every member for likelihood before you launch.</p>
+          <p>Anchor resolves plain-language intent against core banking data, credit insights, and 50,000+ behavioral tags - and scores every member for likelihood before you launch.</p>
         </div>
 
         <div class="card card-pad" style="margin-bottom:16px;">
@@ -712,7 +733,7 @@
         <div class="page-head">
           <div class="eyebrow">Performance &amp; Attribution</div>
           <h1>Every dollar, traced to an outcome</h1>
-          <p>Marketing at a community FI has to defend its budget to the board. Alkami Activate attributes deposits and loan revenue back to the campaign, channel, and message that drove them.</p>
+          <p>Marketing at a community FI has to defend its budget to the board. Anchor attributes deposits and loan revenue back to the campaign, channel, and message that drove them.</p>
         </div>
 
         <div class="grid g-4" style="margin-bottom:16px;">
@@ -759,7 +780,7 @@
       <section class="view" id="view-prd">
         <div class="page-head prd">
           <div class="eyebrow">Product Requirements · 1-pager</div>
-          <h1>Alkami Activate - AI Campaign Copilot (concept)</h1>
+          <h1>Anchor - AI Campaign Copilot (concept)</h1>
         </div>
         <div class="prd prd-doc">
           <div class="prd-meta">
@@ -831,7 +852,7 @@
             <li><b>Phase 3 - Autonomy with guardrails:</b> always-on journeys, self-optimizing channel/message allocation, benchmarked networks across FIs.</li>
           </ul>
         </div>
-        <p class="disclaimer">Unofficial concept prototype exploring an AI copilot for Alkami Activate, created by Devin DePoint for an interview. Not affiliated with, endorsed by, or an official product of Alkami Technology. "ESL Federal Credit Union" is used only as an illustrative example and all data shown is fictional.</p>
+        <p class="disclaimer">Anchor is an unofficial concept prototype - an AI campaign copilot for community banks and credit unions - created by Devin DePoint for an interview. Not affiliated with, endorsed by, or an official product of Alkami Technology. "ESL Federal Credit Union" is used only as an illustrative example and all data shown is fictional.</p>
       </section>
 
     </div>
@@ -1013,10 +1034,10 @@
 
   /* ---------- funnel (ordinal coral ramp, direct-labeled) ---------- */
   var funnelData=[
-    {n:"Reached",v:18400,c:"#CDEAEC"},
-    {n:"Opened / viewed",v:9660,c:"#93D4D9"},
-    {n:"Clicked to offer",v:4120,c:"#54BCC4"},
-    {n:"Opened account",v:3910,c:"#1F9BA6"}
+    {n:"Reached",v:18400,c:"#B7D3F6"},
+    {n:"Opened / viewed",v:9660,c:"#86B6EF"},
+    {n:"Clicked to offer",v:4120,c:"#5598E7"},
+    {n:"Opened account",v:3910,c:"#2A78D6"}
   ];
   function drawFunnel(){
     var svg=document.getElementById("funnel"); if(!svg) return;
@@ -1032,8 +1053,8 @@
         tip.innerHTML="<b>"+d.v.toLocaleString()+"</b> "+d.n+"<br>"+(d.v/max*100).toFixed(1)+"% of reached"; });
       rect.addEventListener("mouseleave",function(){ tip.style.opacity="0"; });
       svg.appendChild(rect);
-      var tn=el("text",{x:12,y:y+lh/2-2,'font-size':"12.5",'font-weight':"650",fill:"#08363B"}); tn.textContent=d.n; svg.appendChild(tn);
-      var tv=el("text",{x:12,y:y+lh/2+13,'font-size':"11",fill:"#08363B",opacity:"0.85"}); tv.textContent=d.v.toLocaleString()+" · "+(d.v/max*100).toFixed(0)+"%"; svg.appendChild(tv);
+      var tn=el("text",{x:12,y:y+lh/2-2,'font-size':"12.5",'font-weight':"650",fill:"#0B2350"}); tn.textContent=d.n; svg.appendChild(tn);
+      var tv=el("text",{x:12,y:y+lh/2+13,'font-size':"11",fill:"#0B2350",opacity:"0.85"}); tv.textContent=d.v.toLocaleString()+" · "+(d.v/max*100).toFixed(0)+"%"; svg.appendChild(tv);
     });
   }
 
