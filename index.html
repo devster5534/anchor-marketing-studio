@@ -163,8 +163,16 @@
   .nav-item.active svg { opacity:1; }
   .side-foot {
     margin-top: auto; padding: 12px 10px 2px; border-top: 1px solid var(--border);
-    display:flex; align-items:center; gap:10px;
+    display:flex; flex-direction:column; gap:9px;
   }
+  .foot-user { display:flex; align-items:center; gap:10px; }
+  .spec-link {
+    display:flex; align-items:center; gap:8px; width:100%; text-align:left;
+    background:none; border:none; font-family:inherit; cursor:pointer;
+    font-size:12px; font-weight:550; color: var(--muted); padding: 2px 2px 4px;
+  }
+  .spec-link:hover { color: var(--ink); }
+  .spec-link svg { width:13px; height:13px; opacity:.85; flex:none; }
   .avatar {
     width:32px; height:32px; border-radius:50%; flex:none;
     background: linear-gradient(140deg,#4a3aa7,#7d6bd6); color:#fff;
@@ -450,6 +458,8 @@
   .side .side-foot { border-top: 1px solid rgba(255,255,255,.14); }
   .side .side-foot .who b { color:#fff; }
   .side .side-foot .who span { color: rgba(255,255,255,.6); }
+  .side .spec-link { color: rgba(255,255,255,.58); }
+  .side .spec-link:hover { color:#fff; }
 </style>
 
 <div class="app">
@@ -486,15 +496,15 @@
       Performance
     </button>
 
-    <div class="nav-label">About this build</div>
-    <button class="nav-item" data-view="prd">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5M8.5 13h7M8.5 17h5"/></svg>
-      Product spec (PRD)
-    </button>
-
     <div class="side-foot">
-      <div class="avatar">DD</div>
-      <div class="who"><b>Devin Depoint</b><br><span>Product · Marketing</span></div>
+      <div class="foot-user">
+        <div class="avatar">DD</div>
+        <div class="who"><b>Devin DePoint</b><br><span>Product</span></div>
+      </div>
+      <button class="spec-link" data-view="prd">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5M8.5 13h7M8.5 17h5"/></svg>
+        Product spec
+      </button>
     </div>
   </aside>
 
@@ -815,7 +825,7 @@
         </div>
         <div class="prd prd-doc">
           <div class="prd-meta">
-            <span><b>Author</b> Devin Depoint</span>
+            <span><b>Author</b> Devin DePoint</span>
             <span><b>Role framing</b> Director, PM - Marketing</span>
             <span><b>Status</b> Concept prototype</span>
             <span><b>Date</b> Jul 15, 2026</span>
